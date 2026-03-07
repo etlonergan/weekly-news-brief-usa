@@ -6,7 +6,6 @@
   <title>The Common Sense Prompt</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       min-height: 100vh;
       background: #F5F2EC;
@@ -17,347 +16,208 @@
       padding: 60px 24px 80px;
       color: #16130E;
     }
-
-    /* ── Masthead ── */
-    .masthead {
-      text-align: center;
-      margin-bottom: 44px;
-      max-width: 720px;
-      width: 100%;
-    }
+    .masthead { text-align: center; margin-bottom: 44px; max-width: 720px; width: 100%; }
     .rule { width: 36px; height: 2px; background: #B8922A; margin: 0 auto; }
     .rule-top { margin-bottom: 16px; }
     .rule-mid { margin: 0 auto 22px; }
-    .eyebrow {
-      font-size: 10px; letter-spacing: 6px; color: #B8922A;
-      text-transform: uppercase; margin-bottom: 10px; margin-top: 16px;
-    }
-    h1 {
-      font-size: clamp(36px, 7vw, 62px);
-      font-weight: normal;
-      color: #16130E;
-      margin-bottom: 6px;
-      letter-spacing: -1.5px;
-      line-height: 1.05;
-    }
-    h2 {
-      font-size: clamp(18px, 3vw, 26px);
-      font-weight: normal;
-      color: #B8922A;
-      margin-bottom: 16px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-    }
-    .tagline {
-      font-size: 14px; color: #7A7060; line-height: 1.9;
-      font-style: italic; margin-bottom: 12px;
-    }
-    .intro-box {
-      background: #EEE9DF; border-left: 3px solid #B8922A;
-      padding: 16px 22px; text-align: left; margin-bottom: 16px;
-    }
+    .eyebrow { font-size: 10px; letter-spacing: 6px; color: #B8922A; text-transform: uppercase; margin-bottom: 10px; margin-top: 16px; }
+    h1 { font-size: clamp(36px, 7vw, 62px); font-weight: normal; color: #16130E; margin-bottom: 6px; letter-spacing: -1.5px; line-height: 1.05; }
+    h2 { font-size: clamp(18px, 3vw, 26px); font-weight: normal; color: #B8922A; margin-bottom: 16px; letter-spacing: 4px; text-transform: uppercase; }
+    .tagline { font-size: 14px; color: #7A7060; line-height: 1.9; font-style: italic; margin-bottom: 12px; }
+    .intro-box { background: #EEE9DF; border-left: 3px solid #B8922A; padding: 16px 22px; text-align: left; margin-bottom: 16px; }
     .intro-box p { font-size: 13px; color: #7A6A50; line-height: 1.85; margin-bottom: 10px; }
     .intro-box p:last-child { margin-bottom: 0; }
-    .quote-box {
-      background: #F0EBE0; border: 1px solid #DDD6C8;
-      padding: 14px 22px; text-align: left;
-    }
+    .quote-box { background: #F0EBE0; border: 1px solid #DDD6C8; padding: 14px 22px; text-align: left; }
     .quote-box p { font-size: 12px; color: #9A8A70; line-height: 1.8; font-style: italic; }
-
-    /* ── Tabs ── */
-    .tabs {
-      display: flex; width: 100%; max-width: 720px;
-    }
-    .tab-btn {
-      flex: 1;
-      background: #EAE5DB;
-      border: 1px solid #DDD6C8;
-      border-bottom: 1px solid #DDD6C8;
-      color: #8A8070;
-      padding: 12px 4px;
-      cursor: pointer;
-      font-size: 10px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      transition: all 0.15s ease;
-      font-family: Georgia, serif;
-    }
-    .tab-btn.active {
-      background: #FFFFFF;
-      border-bottom: 1px solid #FFFFFF;
-      color: #16130E;
-    }
-
-    /* ── Card ── */
-    .card {
-      width: 100%; max-width: 720px;
-      background: #FFFFFF;
-      border: 1px solid #DDD6C8;
-      border-top: none;
-      box-shadow: 0 4px 40px rgba(0,0,0,0.07);
-      margin-bottom: 3px;
-    }
+    .tabs { display: flex; width: 100%; max-width: 720px; }
+    .tab-btn { flex: 1; background: #EAE5DB; border: 1px solid #DDD6C8; border-bottom: 1px solid #DDD6C8; color: #8A8070; padding: 12px 4px; cursor: pointer; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-family: Georgia, serif; }
+    .tab-btn.active { background: #FFFFFF; border-bottom: 1px solid #FFFFFF; color: #16130E; }
+    .card { width: 100%; max-width: 720px; background: #FFFFFF; border: 1px solid #DDD6C8; border-top: none; box-shadow: 0 4px 40px rgba(0,0,0,0.07); margin-bottom: 3px; }
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
-
-    /* ── Prompt tab ── */
-    .prompt-meta {
-      padding: 36px 40px 0;
-    }
-    .prompt-header {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 18px;
-    }
+    .panel-body { padding: 36px 40px; }
+    .panel-intro { font-size: 14px; color: #7A7060; line-height: 1.85; margin-bottom: 28px; font-style: italic; }
+    .prompt-wrap { padding: 36px 40px 0; }
+    .prompt-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
     .prompt-header span { font-size: 10px; letter-spacing: 3px; color: #C0B8A0; text-transform: uppercase; }
     .prompt-divider { border-top: 1px solid #EDE8E0; padding-top: 24px; }
-    #prompt-text {
-      font-family: 'Courier New', monospace;
-      font-size: 12px; line-height: 1.9; color: #6A6258;
-      white-space: pre-wrap; word-break: break-word;
-    }
-    #toggle-btn {
-      background: none; border: none; color: #B8922A;
-      font-size: 12px; cursor: pointer; padding: 14px 0 4px;
-      font-family: Georgia, serif; display: block; font-style: italic;
-    }
+    #prompt-text { font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.9; color: #6A6258; white-space: pre-wrap; word-break: break-word; }
+    #toggle-btn { background: none; border: none; color: #B8922A; font-size: 12px; cursor: pointer; padding: 14px 0 4px; font-family: Georgia, serif; display: block; font-style: italic; }
     .copy-area { padding: 28px 40px 36px; }
-    #copy-btn {
-      width: 100%;
-      background: #16130E; color: #F0EAD8;
-      border: none; padding: 20px;
-      font-size: 12px; letter-spacing: 3px;
-      text-transform: uppercase; cursor: pointer;
-      font-family: Georgia, serif; transition: all 0.25s ease;
-    }
+    #copy-btn { width: 100%; background: #16130E; color: #F0EAD8; border: none; padding: 20px; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; font-family: Georgia, serif; transition: all 0.25s ease; }
     #copy-btn.copied { background: #1A2E1A; color: #8EC87E; }
-    .copy-note {
-      text-align: center; font-size: 12px; color: #A09880;
-      margin-top: 14px; line-height: 1.7;
-    }
-
-    /* ── Shared panel styles ── */
-    .panel-body { padding: 36px 40px; }
-    .panel-intro {
-      font-size: 14px; color: #7A7060; line-height: 1.85;
-      margin-bottom: 28px; font-style: italic;
-    }
-    .section-label {
-      font-size: 11px; color: #B8922A; letter-spacing: 2px;
-      text-transform: uppercase; margin-bottom: 20px; padding-top: 8px;
-    }
-
-    /* ── Row items ── */
-    .row-item {
-      display: flex; gap: 16px; margin-bottom: 3px;
-      padding: 16px 20px; background: #F9F6F0;
-    }
-    .row-item .sym {
-      font-family: monospace; font-weight: bold; min-width: 24px;
-      padding-top: 1px; line-height: 1.3;
-    }
+    .copy-note { text-align: center; font-size: 12px; color: #A09880; margin-top: 14px; line-height: 1.7; }
+    .row-item { display: flex; gap: 16px; margin-bottom: 3px; padding: 16px 20px; background: #F9F6F0; }
+    .row-item .sym { font-family: monospace; font-weight: bold; min-width: 24px; padding-top: 1px; line-height: 1.3; }
     .row-item .label { font-size: 13px; color: #16130E; margin-bottom: 4px; }
     .row-item .desc { font-size: 12px; color: #8A8070; line-height: 1.75; }
     .row-item .sources { font-size: 11px; color: #A09880; line-height: 1.7; font-style: italic; margin-top: 6px; }
-    .pillar-tag {
-      font-family: monospace; font-size: 13px; font-weight: bold; margin-right: 10px;
-    }
+    .pillar-header { display: flex; align-items: baseline; margin-bottom: 8px; gap: 10px; }
+    .pillar-tag { font-family: monospace; font-size: 13px; font-weight: bold; }
     .pillar-name { font-size: 13px; color: #16130E; }
-    .pillar-header { display: flex; align-items: baseline; margin-bottom: 8px; }
-
-    /* ── Mock menu ── */
-    .mock-menu {
-      background: #16130E; padding: 24px 28px; margin-bottom: 28px;
-      font-family: 'Courier New', monospace;
-    }
+    .mock-menu { background: #16130E; padding: 24px 28px; margin-bottom: 28px; font-family: 'Courier New', monospace; }
     .mock-divider { font-size: 11px; color: #2A2620; }
     .mock-title { font-size: 13px; color: #C8B890; margin: 16px 0; }
     .mock-option { display: flex; gap: 14px; margin-bottom: 10px; align-items: baseline; }
     .mock-num { font-weight: bold; min-width: 16px; font-size: 14px; }
     .mock-label { color: #E8E0D0; font-size: 13px; }
     .mock-type { font-size: 12px; color: #5A5248; margin-top: 8px; }
-
-    /* ── Callout boxes ── */
-    .callout {
-      margin-top: 24px; padding: 18px 22px;
-      background: #F0EBE0; border-left: 3px solid #B8922A;
-    }
+    .callout { margin-top: 24px; padding: 18px 22px; background: #F0EBE0; border-left: 3px solid #B8922A; }
     .callout + .callout { margin-top: 3px; }
-    .callout-label {
-      font-size: 10px; letter-spacing: 3px; color: #B8922A;
-      margin-bottom: 10px; text-transform: uppercase;
-    }
+    .callout-label { font-size: 10px; letter-spacing: 3px; color: #B8922A; margin-bottom: 10px; text-transform: uppercase; }
     .callout p { font-size: 13px; color: #7A7060; line-height: 1.8; margin-bottom: 10px; }
     .callout p:last-child { margin-bottom: 0; }
-
-    /* ── Source strip ── */
-    .source-strip {
-      width: 100%; max-width: 720px;
-      background: #FFFFFF; border: 1px solid #DDD6C8;
-      padding: 18px 32px;
-      display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
-    }
-    .strip-label {
-      font-size: 10px; letter-spacing: 3px; color: #C0B098;
-      text-transform: uppercase; margin-right: 8px;
-    }
-    .pub-tag {
-      font-size: 11px; color: #8A7A60; background: #F4F0E8;
-      padding: 4px 12px; border: 1px solid #E0D8C8;
-    }
-    .footer {
-      margin-top: 40px; font-size: 11px; color: #C0B098;
-      letter-spacing: 1px; text-align: center; line-height: 1.8;
-    }
-
-    @media (max-width: 600px) {
-      body { padding: 40px 16px 60px; }
-      .panel-body, .prompt-meta, .copy-area { padding-left: 20px; padding-right: 20px; }
-      .tab-btn { font-size: 9px; letter-spacing: 0.5px; }
-    }
+    .section-label { font-size: 11px; color: #B8922A; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; padding-top: 8px; }
+    .source-strip { width: 100%; max-width: 720px; background: #FFFFFF; border: 1px solid #DDD6C8; padding: 18px 32px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .strip-label { font-size: 10px; letter-spacing: 3px; color: #C0B098; text-transform: uppercase; margin-right: 8px; }
+    .pub-tag { font-size: 11px; color: #8A7A60; background: #F4F0E8; padding: 4px 12px; border: 1px solid #E0D8C8; }
+    .footer { margin-top: 40px; font-size: 11px; color: #C0B098; letter-spacing: 1px; text-align: center; line-height: 1.8; }
+    @media (max-width: 600px) { body { padding: 40px 16px 60px; } .panel-body, .prompt-wrap, .copy-area { padding-left: 20px; padding-right: 20px; } .tab-btn { font-size: 9px; letter-spacing: 0.5px; } }
   </style>
 </head>
 <body>
 
-  <!-- Masthead -->
-  <div class="masthead">
-    <div class="rule rule-top"></div>
-    <p class="eyebrow">The</p>
-    <h1>Common Sense</h1>
-    <h2>Prompt</h2>
-    <div class="rule rule-mid"></div>
-    <p class="tagline">
-      In 1776, Thomas Paine wrote Common Sense to cut through propaganda<br>
-      and give ordinary Americans a shared foundation for judgment —<br>
-      in plain language, free to all.
-    </p>
-    <p class="tagline" style="margin-bottom: 24px;">This prompt is built on the same conviction.</p>
-    <div class="intro-box">
-      <p>A free, open prompt for any AI assistant. Nine stories every week.
-         Facts sourced only from wire services and official records.
-         Every perspective names the outlets consulted — so you can verify
-         and challenge what you read.</p>
-      <p>The antithesis of algorithmic news. Free to copy, share, and adapt
-         without restriction.</p>
+<div class="masthead">
+  <div class="rule rule-top"></div>
+  <p class="eyebrow">The</p>
+  <h1>Common Sense</h1>
+  <h2>Prompt</h2>
+  <div class="rule rule-mid"></div>
+  <p class="tagline">Algorithmic feeds are designed to make you angry, afraid, and certain the other side is beyond reason. That feeling is not an accident. It is a design decision.</p>
+  <p class="tagline" style="margin-bottom: 24px;">This prompt gives you something the algorithm is designed to deny you: agency.</p>
+  <div class="intro-box">
+    <p>Not a feed that happens to you. A tool you control. Nine stories every week, built on verified facts, named sources, and every perspective fairly heard.</p>
+    <p>The antithesis of algorithmic news. Inspired by Thomas Paine. Free to copy, share, and adapt without restriction.</p>
+  </div>
+  <div class="quote-box">
+    <p>"The divide feels unbridgeable because the feeds are engineered to make it feel that way. The Common Sense Prompt exists to give you something the algorithm is designed to deny you: agency."</p>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab('prompt', this)">The Prompt</button>
+  <button class="tab-btn" onclick="showTab('trust', this)">Why Trust It</button>
+  <button class="tab-btn" onclick="showTab('menu', this)">How It Works</button>
+  <button class="tab-btn" onclick="showTab('categories', this)">Nine Stories</button>
+</div>
+
+<div class="card">
+
+  <!-- THE PROMPT TAB -->
+  <div id="tab-prompt" class="tab-panel active">
+    <div class="prompt-wrap">
+      <div class="prompt-header">
+        <span>Plain Text &mdash; Paste Into Claude With Web Search Enabled</span>
+        <span>v1.2</span>
+      </div>
+      <div class="prompt-divider">
+        <pre id="prompt-text">THE COMMON SENSE
+════════════════════════════════════════
+Inspired by Thomas Paine&#x27;s Common Sense (1776), which cut through
+propaganda to give ordinary Americans a shared foundation for judgment.
+Free to copy, share, and adapt without restriction.
+════════════════════════════════════════
+
+PURPOSE
+The Common Sense Prompt exists to give any American — regardless of political background, region, or news diet — a shared factual foundation on the week&#x27;s most consequential stories. American public life is increasingly shaped by separate information ecosystems that present not just different opinions...</pre>
+        <button id="toggle-btn" onclick="togglePrompt()">Read the full prompt</button>
+      </div>
     </div>
-    <div class="quote-box">
-      <p>"No AI model is perfectly neutral, and this prompt does not claim to be.
-         What it claims is transparency. Every fact is sourced. Every perspective
-         names where it came from. And if anything seems incomplete or wrong,
-         you are always invited to say so."</p>
+    <div class="copy-area">
+      <button id="copy-btn" onclick="copyPrompt()">Copy The Common Sense Prompt</button>
+      <p class="copy-note">Optimized for Claude with web search enabled.<br>Also works in ChatGPT, Gemini, and Perplexity.<br>Free to share without restriction.</p>
     </div>
   </div>
 
-  <!-- Tabs -->
-  <div class="tabs">
-    <button class="tab-btn active" onclick="showTab('prompt')">The Prompt</button>
-    <button class="tab-btn" onclick="showTab('trust')">Why Trust It</button>
-    <button class="tab-btn" onclick="showTab('menu')">How It Works</button>
-    <button class="tab-btn" onclick="showTab('categories')">Nine Stories</button>
+  <!-- WHY TRUST IT TAB -->
+  <div id="tab-trust" class="tab-panel">
+    <div class="panel-body">
+      <p class="panel-intro">The Common Sense Prompt does not claim to be perfectly neutral. No source can make that claim honestly. Instead it earns trust through three structural transparency mechanisms the reader can verify for themselves.</p>
+
+      <div class="row-item" style="border-left: 3px solid #7E9EC8; flex-direction: column;">
+        <div class="pillar-header"><span class="pillar-tag" style="color:#7E9EC8">Pillar 1</span><span class="pillar-name">The Common Fact Pattern</span></div>
+        <p style="font-size:13px;color:#6A6258;line-height:1.8;margin-bottom:8px;">What happened, in neutral and precise language. Every claim sourced only from wire services, major broadcasters, official government records, or peer-reviewed research. No loaded language. No interpretation. Bedrock any reader can verify.</p>
+        <p class="sources">Fact sources: Reuters, AP, AFP, BBC, NPR, PBS, government records, court documents, peer-reviewed research.</p>
+      </div>
+
+      <div class="row-item" style="border-left: 3px solid #A67EA8; flex-direction: column; margin-top: 3px;">
+        <div class="pillar-header"><span class="pillar-tag" style="color:#A67EA8">Pillar 2</span><span class="pillar-name">Perspectives in Tension</span></div>
+        <p style="font-size:13px;color:#6A6258;line-height:1.8;margin-bottom:8px;">Every significant perspective rendered as its most thoughtful proponents would state it. Opens with a named list of outlets consulted so the reader can verify and challenge. Evidence-based perspective leads, then conservative, then progressive. Minimum two sources per perspective. Symmetric sourcing required.</p>
+        <p class="sources">Perspective sources: partisan and advocacy outlets across the spectrum, named openly, labeled as commentary.</p>
+      </div>
+
+      <div class="row-item" style="border-left: 3px solid #8EC87E; flex-direction: column; margin-top: 3px;">
+        <div class="pillar-header"><span class="pillar-tag" style="color:#8EC87E">Pillar 3</span><span class="pillar-name">Opportunities for Common Ground</span></div>
+        <p style="font-size:13px;color:#6A6258;line-height:1.8;margin-bottom:8px;">What people across the divide actually share beneath the political framing. Where possible, a concrete real-world example of people acting together. Presented as opportunity, not conclusion. If genuine common ground does not exist, the prompt says so honestly.</p>
+        <p class="sources">Quality test: if the observation applies to any political topic generically, it is not specific enough.</p>
+      </div>
+
+      <div class="callout">
+        <div class="callout-label">The Reader Challenge Mechanism</div>
+        <p>After every perspectives section, the prompt adds a standing invitation: "If any perspective here seems incomplete or misrepresented, choose option 2 and tell me how it should read."</p>
+        <p>If a reader offers a correction, the model incorporates it transparently, noting what was changed and why. The prompt is designed to be improved by its readers, not defended against them.</p>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Symmetric Sourcing Requirement</div>
+        <p>For every domestic US story, at least two conservative-leaning and two progressive-leaning sources must be consulted, regardless of which side dominates the news cycle. Symmetry is structural, not editorial.</p>
+      </div>
+    </div>
   </div>
 
-  <!-- Card -->
-  <div class="card">
-
-    <!-- The Prompt -->
-    <div id="tab-prompt" class="tab-panel active">
-      <div class="prompt-meta">
-        <div class="prompt-header">
-          <span>Plain Text — Paste Into Claude With Web Search Enabled</span>
-          <span>v1.1</span>
-        </div>
-        <div class="prompt-divider">
-          <pre id="prompt-text"></pre>
-          <button id="toggle-btn" onclick="togglePrompt()">Read the full prompt</button>
-        </div>
+  <!-- HOW IT WORKS TAB -->
+  <div id="tab-menu" class="tab-panel">
+    <div class="panel-body">
+      <p class="panel-intro">After every story, four options appear. Pick a number. No commands to memorize. The menu reappears after any response so there is always a clear next step.</p>
+      <div class="mock-menu">
+        <div class="mock-divider">&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;</div>
+        <div class="mock-title">What would you like to do?</div>
+        <div class="mock-option"><span class="mock-num" style="color:#7E9EC8">1.</span><span class="mock-label">Go deeper &mdash; more context and background</span></div>
+        <div class="mock-option"><span class="mock-num" style="color:#A67EA8">2.</span><span class="mock-label">Make it yours &mdash; ask anything or push back on anything</span></div>
+        <div class="mock-option"><span class="mock-num" style="color:#C8B77E">3.</span><span class="mock-label">Get local context for my area</span></div>
+        <div class="mock-option"><span class="mock-num" style="color:#7A7060">4.</span><span class="mock-label">Main menu</span></div>
+        <div class="mock-divider" style="margin-top:16px;">&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;</div>
+        <div class="mock-type">Type a number:</div>
       </div>
-      <div class="copy-area">
-        <button id="copy-btn" onclick="copyPrompt()">Copy The Common Sense Prompt</button>
-        <p class="copy-note">
-          Optimized for Claude with web search enabled.<br>
-          Also works in ChatGPT, Gemini, and Perplexity.<br>
-          Free to share without restriction.
-        </p>
-      </div>
+      <div class="row-item" style="border-left: 3px solid #7E9EC8;"><span class="sym" style="color:#7E9EC8;font-size:18px;">1</span><div><div class="label">Go deeper</div><div class="desc">More context, historical background, and sourcing on the current story.</div></div></div>
+      <div class="row-item" style="border-left: 3px solid #A67EA8;"><span class="sym" style="color:#A67EA8;font-size:18px;">2</span><div><div class="label">Make it yours</div><div class="desc">Ask anything or push back on anything. The model incorporates corrections transparently and notes what was changed.</div></div></div>
+      <div class="row-item" style="border-left: 3px solid #C8B77E;"><span class="sym" style="color:#C8B77E;font-size:18px;">3</span><div><div class="label">Get local context</div><div class="desc">The model asks for your city or state, only when you choose this option, never before.</div></div></div>
+      <div class="row-item" style="border-left: 3px solid #7A7060;"><span class="sym" style="color:#7A7060;font-size:18px;">4</span><div><div class="label">Main menu</div><div class="desc">Return to the full story list with checkmarks on completed stories.</div></div></div>
     </div>
-
-    <!-- Why Trust It -->
-    <div id="tab-trust" class="tab-panel">
-      <div class="panel-body">
-        <p class="panel-intro">
-          The Common Sense Prompt does not claim to be perfectly neutral —
-          no source can make that claim honestly. Instead it earns trust
-          through three structural transparency mechanisms the reader can
-          verify for themselves.
-        </p>
-        <div id="pillars-container"></div>
-        <div class="callout">
-          <div class="callout-label">The Reader Challenge Mechanism</div>
-          <p>After every perspectives section, the prompt adds a standing invitation:
-             "If any perspective here seems incomplete or misrepresented, type 2 and tell me how it should read."</p>
-          <p>If a reader offers a correction, the model incorporates it transparently —
-             noting that a correction was offered and what it was. The prompt is
-             designed to be improved by its readers, not defended against them.</p>
-        </div>
-        <div class="callout">
-          <div class="callout-label">Symmetric Sourcing Requirement</div>
-          <p>For every domestic US story, the prompt requires a minimum of two
-             conservative-leaning sources and two progressive-leaning sources to
-             be consulted — regardless of which side is more prominent in the
-             news cycle that week. Symmetry is structural, not editorial.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- How It Works -->
-    <div id="tab-menu" class="tab-panel">
-      <div class="panel-body">
-        <p class="panel-intro">
-          After every story, four options appear. Pick a number.
-          No commands to memorize. The menu reappears after any
-          response so there is always a clear next step.
-        </p>
-        <div class="mock-menu">
-          <div class="mock-divider">────────────────────────────────────────</div>
-          <div class="mock-title">What would you like to do?</div>
-          <div id="mock-options"></div>
-          <div class="mock-divider" style="margin-top:16px;">────────────────────────────────────────</div>
-          <div class="mock-type">Type a number:</div>
-        </div>
-        <div id="menu-items"></div>
-      </div>
-    </div>
-
-    <!-- Nine Stories -->
-    <div id="tab-categories" class="tab-panel">
-      <div class="panel-body">
-        <p class="panel-intro">
-          Every issue contains exactly nine stories: one showcase plus one story
-          per category, always in fixed order. No category is ever crowded out,
-          regardless of what dominates the headlines.
-        </p>
-        <div class="section-label">Nine stories. Same structure. Every week.</div>
-        <div id="categories-container"></div>
-      </div>
-    </div>
-
-  </div><!-- /card -->
-
-  <!-- Source strip -->
-  <div class="source-strip">
-    <span class="strip-label">Fact standards modeled on</span>
-    <span class="pub-tag">Reuters</span>
-    <span class="pub-tag">AP</span>
-    <span class="pub-tag">BBC World Service</span>
-    <span class="pub-tag">Al Jazeera English</span>
-    <span class="pub-tag">NHK World</span>
-    <span class="pub-tag">Christian Science Monitor</span>
   </div>
 
-  <p class="footer">The Common Sense Prompt v1.1 — Free to share, translate, and adapt without restriction.</p>
+  <!-- NINE STORIES TAB -->
+  <div id="tab-categories" class="tab-panel">
+    <div class="panel-body">
+      <p class="panel-intro">Every issue contains exactly nine stories: one showcase plus one story per category, always in fixed order. No category is ever crowded out, regardless of what dominates the headlines.</p>
+      <div class="section-label">Nine stories. Same structure. Every week.</div>
+      <div class="row-item" style="border-left: 3px solid #B8922A; align-items: flex-start;"><span class="sym" style="color:#B8922A;font-size:18px;">&#9733;</span><div><div class="label">Showcase Story</div><div class="desc">The most consequential story of the week. Full three-pillar treatment at 800 to 1,000 words. The reader's first experience every issue. Always additional &mdash; its home category still gets its own entry.</div></div></div>
+      <div class="row-item" style="border-left: 3px solid #C87E7E; align-items: flex-start;"><span class="sym" style="color:#C87E7E;font-size:14px;">1</span><div><div class="label">National Security &amp; Foreign Policy</div><div class="desc">Military conflicts, diplomacy, sanctions, and intelligence matters.</div></div></div>
+      <div class="row-item" style="border-left: 3px solid #B8A030; align-items: flex-start;"><span class="sym" style="color:#B8A030;font-size:14px;">2</span><div><div class="label">Economy &amp; Personal Finance</div><div class="desc">Jobs, deficits, interest rates, housing, trade.</div></div></div>
+      <div class="row-item" style="border-left: 3px solid #7E9EC8; align-items: flex-start;"><span class="sym" style="color:#7E9EC8;font-size:14px;">3</span><div><div class="label">Law &amp; the Courts</div><div class="desc">Supreme Court rulings, constitutional questions, major legal developments.</div></div></div>
+      <div class="row-item" style="border-left: 3px solid #A67EA8; align-items: flex-start;"><span class="sym" style="color:#A67EA8;font-size:14px;">4</span><div><div class="label">Business &amp; Technology</div><div class="desc">AI, platform policy, data and privacy, energy innovation.</div></div></div>
+      <div class="row-item" style="border-left: 3px solid #C8A87E; align-items: flex-start;"><span class="sym" style="color:#C8A87E;font-size:14px;">5</span><div><div class="label">Health &amp; Public Safety</div><div class="desc">Public health, healthcare access, drug policy, food safety.</div></div></div>
+      <div class="row-item" style="border-left: 3px solid #7EB8A4; align-items: flex-start;"><span class="sym" style="color:#7EB8A4;font-size:14px;">6</span><div><div class="label">Climate &amp; Environment</div><div class="desc">Climate data, environmental policy, energy transition. Science and policy kept clearly distinct.</div></div></div>
+      <div class="row-item" style="border-left: 3px solid #8EC87E; align-items: flex-start;"><span class="sym" style="color:#8EC87E;font-size:14px;">7</span><div><div class="label">Civil Liberties &amp; Social Policy</div><div class="desc">Immigration, education, voting rights, free speech, reproductive rights.</div></div></div>
+      <div class="row-item" style="border-left: 3px solid #9E8EC8; align-items: flex-start;"><span class="sym" style="color:#9E8EC8;font-size:14px;">8</span><div><div class="label">World at a Glance</div><div class="desc">Two to three international stories shaping global conditions that affect American life.</div></div></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="source-strip">
+  <span class="strip-label">Fact standards modeled on</span>
+  <span class="pub-tag">Reuters</span>
+  <span class="pub-tag">AP</span>
+  <span class="pub-tag">BBC World Service</span>
+  <span class="pub-tag">Al Jazeera English</span>
+  <span class="pub-tag">NHK World</span>
+  <span class="pub-tag">Christian Science Monitor</span>
+</div>
+
+<p class="footer">The Common Sense Prompt v1.2 &mdash; Free to share, translate, and adapt without restriction.</p>
 
 <script>
-// ── Full prompt text ──────────────────────────────────────────────────────────
-const PROMPT = `THE COMMON SENSE
+const FULL_PROMPT = `THE COMMON SENSE
 ════════════════════════════════════════
 Inspired by Thomas Paine's Common Sense (1776), which cut through
 propaganda to give ordinary Americans a shared foundation for judgment.
@@ -652,54 +512,21 @@ Give me a few minutes to search, curate, and verify this week's news for you. I'
 
 Then present the Main Menu and wait for the reader to select a story or press Enter to begin with the Showcase.`;
 
-// ── Data ─────────────────────────────────────────────────────────────────────
-const interactionMenu = [
-  { num: "1", color: "#7E9EC8", label: "Go deeper", desc: "More context, historical background, and sourcing on the current story." },
-  { num: "2", color: "#A67EA8", label: "Make it yours", desc: "Ask anything or push back on anything. The model incorporates corrections transparently and notes what was changed." },
-  { num: "3", color: "#C8B77E", label: "Get local context", desc: "The model asks for your city or state — only when you choose this option, never before." },
-  { num: "4", color: "#7A7060", label: "Main menu", desc: "Return to the full story list with checkmarks on completed stories." },
-];
-
-const pillars = [
-  { num: "1", color: "#7E9EC8", label: "The Common Fact Pattern",
-    desc: "What happened, in neutral and precise language. Every claim sourced only from wire services, major broadcasters, official government records, or peer-reviewed research. No loaded language. No interpretation. Bedrock any reader can verify.",
-    sources: "Fact sources: Reuters, AP, AFP, BBC, NPR, PBS, government records, court documents, peer-reviewed research." },
-  { num: "2", color: "#A67EA8", label: "Perspectives in Tension",
-    desc: "Every significant perspective rendered as its most thoughtful proponents would state it. Each perspective block opens with a named list of the outlets consulted — so the reader can verify the rendering and challenge it if it falls short. Minimum two sources per perspective. Symmetric sourcing required for domestic stories.",
-    sources: "Perspective sources: partisan and advocacy outlets across the spectrum, named openly, labeled as commentary." },
-  { num: "3", color: "#8EC87E", label: "Opportunities for Common Ground",
-    desc: "What people across the divide actually share — specific human values, concerns, or goals beneath the political framing. Where possible, a concrete real-world example of people acting together across the divide. Presented as opportunity, not conclusion. If genuine common ground does not exist, the prompt says so honestly.",
-    sources: "Quality test: if the observation applies to any political topic generically, it is not specific enough — rewrite it." },
-];
-
-const categories = [
-  { sym: "★", color: "#B8922A", size: "18px", label: "Showcase Story", desc: "The most consequential story of the week across scale, urgency, and reversibility simultaneously. Always additional — its home category still gets its own entry." },
-  { sym: "1", color: "#C87E7E", size: "14px", label: "National Security & Foreign Policy", desc: "Military conflicts, diplomacy, sanctions, and intelligence matters." },
-  { sym: "2", color: "#B8A030", size: "14px", label: "Economy & Personal Finance", desc: "Jobs, deficits, interest rates, housing, trade." },
-  { sym: "3", color: "#7E9EC8", size: "14px", label: "Law & the Courts", desc: "Supreme Court rulings, constitutional questions, major legal developments." },
-  { sym: "4", color: "#A67EA8", size: "14px", label: "Business & Technology", desc: "AI, platform policy, data and privacy, energy innovation." },
-  { sym: "5", color: "#C8A87E", size: "14px", label: "Health & Public Safety", desc: "Public health, healthcare access, drug policy, food safety." },
-  { sym: "6", color: "#7EB8A4", size: "14px", label: "Climate & Environment", desc: "Climate data, environmental policy, energy transition. Science and policy kept clearly distinct." },
-  { sym: "7", color: "#8EC87E", size: "14px", label: "Civil Liberties & Social Policy", desc: "Immigration, education, voting rights, free speech, reproductive rights." },
-  { sym: "8", color: "#9E8EC8", size: "14px", label: "World at a Glance", desc: "Two to three international stories shaping global conditions that affect American life." },
-];
-
-// ── Render dynamic content ────────────────────────────────────────────────────
-const PREVIEW_LEN = 520;
+const PREVIEW = FULL_PROMPT.slice(0, 600) + '...';
 let showFull = false;
 
-document.getElementById('prompt-text').textContent = PROMPT.slice(0, PREVIEW_LEN) + '...';
+document.getElementById('prompt-text').textContent = PREVIEW;
 
 function togglePrompt() {
   showFull = !showFull;
-  document.getElementById('prompt-text').textContent = showFull ? PROMPT : PROMPT.slice(0, PREVIEW_LEN) + '...';
+  document.getElementById('prompt-text').textContent = showFull ? FULL_PROMPT : PREVIEW;
   document.getElementById('toggle-btn').textContent = showFull ? 'Show less' : 'Read the full prompt';
 }
 
 function copyPrompt() {
-  navigator.clipboard.writeText(PROMPT).then(() => {
+  navigator.clipboard.writeText(FULL_PROMPT).then(() => {
     const btn = document.getElementById('copy-btn');
-    btn.textContent = '✓  Copied — Paste Into Any AI Assistant With Web Search';
+    btn.textContent = '\u2713  Copied \u2014 Paste Into Any AI Assistant With Web Search';
     btn.classList.add('copied');
     setTimeout(() => {
       btn.textContent = 'Copy The Common Sense Prompt';
@@ -708,62 +535,11 @@ function copyPrompt() {
   });
 }
 
-// Pillars
-const pillarsEl = document.getElementById('pillars-container');
-pillars.forEach(p => {
-  pillarsEl.innerHTML += `
-    <div class="row-item" style="border-left: 3px solid ${p.color}; margin-bottom: 3px; flex-direction: column;">
-      <div class="pillar-header">
-        <span class="pillar-tag" style="color:${p.color}">Pillar ${p.num}</span>
-        <span class="pillar-name">${p.label}</span>
-      </div>
-      <p style="font-size:13px;color:#6A6258;line-height:1.8;margin-bottom:8px;">${p.desc}</p>
-      <p class="sources">${p.sources}</p>
-    </div>`;
-});
-
-// Mock menu options
-const mockEl = document.getElementById('mock-options');
-interactionMenu.forEach(item => {
-  mockEl.innerHTML += `
-    <div class="mock-option">
-      <span class="mock-num" style="color:${item.color}">${item.num}.</span>
-      <span class="mock-label">${item.label}</span>
-    </div>`;
-});
-
-// Menu item explanations
-const menuEl = document.getElementById('menu-items');
-interactionMenu.forEach(item => {
-  menuEl.innerHTML += `
-    <div class="row-item" style="border-left: 3px solid ${item.color}; margin-bottom: 3px;">
-      <span class="sym" style="color:${item.color}; font-size:18px;">${item.num}</span>
-      <div>
-        <div class="label">${item.label}</div>
-        <div class="desc">${item.desc}</div>
-      </div>
-    </div>`;
-});
-
-// Categories
-const catEl = document.getElementById('categories-container');
-categories.forEach(c => {
-  catEl.innerHTML += `
-    <div class="row-item" style="border-left: 3px solid ${c.color}; margin-bottom: 3px; align-items: flex-start;">
-      <span class="sym" style="color:${c.color}; font-size:${c.size};">${c.sym}</span>
-      <div>
-        <div class="label">${c.label}</div>
-        <div class="desc">${c.desc}</div>
-      </div>
-    </div>`;
-});
-
-// ── Tab switching ─────────────────────────────────────────────────────────────
-function showTab(name) {
+function showTab(name, el) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
-  event.target.classList.add('active');
+  el.classList.add('active');
 }
 </script>
 </body>
