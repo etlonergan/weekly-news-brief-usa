@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Weekly News Brief &mdash; USA Edition</title>
+  <title>Your Weekly News Brief &mdash; U.S. Edition</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -321,15 +321,15 @@
   <div id="tab-prompt" class="tab-panel active">
     <div style="padding: 24px 36px 22px; background: #F4F0E8; border-bottom: 1px solid #EDE8E0;">
       <p style="font-size: 15px; color: #1A1612; line-height: 1.75; margin-bottom: 12px;"><strong>One step: copy the prompt below and paste it into Claude.</strong></p>
-      <p style="font-size: 13px; color: #5A5248; line-height: 1.85; margin-bottom: 10px;">That is all. The Weekly News Brief is a carefully crafted prompt — a set of plain-text instructions that tell an AI how to research, structure, and present this week’s news. Copy it, paste it into Claude or any AI with web search enabled, and it does the rest: searches current sources, builds ten stories across eight fixed categories, and guides you through the brief interactively.</p>
+      <p style="font-size: 13px; color: #5A5248; line-height: 1.85; margin-bottom: 10px;">That is all. Your Weekly News Brief is a carefully crafted prompt — a set of plain-text instructions that tell an AI how to research, structure, and present this week’s news. Copy it, paste it into Claude or any AI with web search enabled, and it does the rest: searches current sources, builds ten stories across eight fixed categories, and guides you through the brief interactively.</p>
       <p style="font-size: 13px; color: #5A5248; line-height: 1.85; margin: 0;">Optimized for <strong>Claude</strong> at claude.ai with web search turned on. Also works in ChatGPT, Gemini, and Perplexity. Free. No setup required.</p>
     </div>
     <div class="prompt-header">
       <span>Plain text &mdash; paste into Claude or ChatGPT with web search enabled</span>
-      <span class="version-tag">v2.5</span>
+      <span class="version-tag">v2.6</span>
     </div>
     <div class="prompt-body">
-      <pre id="prompt-text">You are a senior editor at a nonpartisan news organization. Your job is to produce a weekly news brief for a general American audience. The brief covers ten stories: one top story that receives full in-depth treatment, eight category stories that are tight, precise, and complete, and one Portraits and Passings entry. Every story is built on three pillars: a common fact pattern sourced only from wire services and official records; a fair presentation of every significant perspective with sources ...</pre>
+      <pre id="prompt-text">You are a senior editor at a nonpartisan news organization. Your job is to produce Your Weekly News Brief for a general American audience. The brief covers ten stories: one top story that receives full in-depth treatment, eight category stories that are tight, precise, and complete, and one Portraits and Passings entry. Every story is built on three pillars: a common fact pattern sourced only from wire services and official records; a fair presentation of every significant perspective with sourc...</pre>
       <button id="toggle-btn" onclick="togglePrompt()">Read the Full Prompt</button>
     </div>
     <div class="copy-section">
@@ -480,12 +480,12 @@
 </div>
 
 <p class="footer">
-  The Weekly News Brief &mdash; USA Edition &mdash; v2.5<br>
+  Your Weekly News Brief &mdash; U.S. Edition &mdash; v2.6<br>
   Free to share, translate, and adapt without restriction.
 </p>
 
 <script>
-const FULL_PROMPT = `You are a senior editor at a nonpartisan news organization. Your job is to produce a weekly news brief for a general American audience. The brief covers ten stories: one top story that receives full in-depth treatment, eight category stories that are tight, precise, and complete, and one Portraits and Passings entry. Every story is built on three pillars: a common fact pattern sourced only from wire services and official records; a fair presentation of every significant perspective with sources named openly; and an honest assessment of where common ground exists or why it does not.
+const FULL_PROMPT = `You are a senior editor at a nonpartisan news organization. Your job is to produce Your Weekly News Brief for a general American audience. The brief covers ten stories: one top story that receives full in-depth treatment, eight category stories that are tight, precise, and complete, and one Portraits and Passings entry. Every story is built on three pillars: a common fact pattern sourced only from wire services and official records; a fair presentation of every significant perspective with sources named openly; and an honest assessment of where common ground exists or why it does not.
 
 You work silently. After delivering the opening greeting, you do not narrate your process. You do not say "let me search," "I will now gather," or "I have found sufficient information." The reader sees only the greeting, then your work.
 
@@ -800,7 +800,7 @@ Two to three sentences on what this week's ten stories, taken together, reveal a
 One question — not a political question but a human one — that any American regardless of politics might genuinely reflect on. The question should make the reader feel curious, not anxious. It should open something up. If the question could appear in an algorithmic feed designed to provoke, rewrite it.
 
 **Until Next Week**
-The Weekly News Brief is free to copy, share, and adapt without restriction. If it was useful, pass it on.
+Your Weekly News Brief is free to copy, share, and adapt without restriction. If it was useful, pass it on.
 
 ════════════════════════════════════════
 TONE AND LANGUAGE
@@ -812,7 +812,7 @@ The goal is a common factual foundation and a fair hearing for every perspective
 
 No AI model is perfectly neutral. This brief does not claim to be. What it claims is transparency: every fact is sourced, every perspective names where it came from, and the reader is always invited to challenge what they read.
 `;
-const PREVIEW = `You are a senior editor at a nonpartisan news organization. Your job is to produce a weekly news brief for a general American audience. The brief covers ten stories: one top story that receives full in-depth treatment, eight category stories that are tight, precise, and complete, and one Portraits and Passings entry. Every story is built on three pillars: a common fact pattern sourced only from wire services and official records; a fair presentation of every significant perspective with sources ...`;
+const PREVIEW = `You are a senior editor at a nonpartisan news organization. Your job is to produce Your Weekly News Brief for a general American audience. The brief covers ten stories: one top story that receives full in-depth treatment, eight category stories that are tight, precise, and complete, and one Portraits and Passings entry. Every story is built on three pillars: a common fact pattern sourced only from wire services and official records; a fair presentation of every significant perspective with sourc...`;
 
 let showFull = false;
 document.getElementById('prompt-text').textContent = PREVIEW;
