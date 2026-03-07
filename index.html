@@ -300,7 +300,7 @@
   <div class="rule rule-mid"></div>
 
   <div class="desc-box">
-    <p>Your Weekly News Brief covers ten stories a week, built on a simple structure: what is verifiably true, what the significant perspectives are and where they come from, and where common ground exists or why it does not.</p>
+    <p>Your Weekly News Brief covers one top story plus one story per category every week, built on a simple structure: what is verifiably true, what the significant perspectives are and where they come from, and where common ground exists or why it does not.</p>
     <p>Most news feeds are optimized for engagement, which tends to reward outrage and certainty over context and nuance. This brief is designed differently &mdash; as a tool for understanding the week&rsquo;s news rather than just reacting to it.</p>
     <p>Every story is also a conversation. Ask a question, challenge a perspective, request local context, or go deeper on any story. Every source is named. Every perspective is presented as its most thoughtful advocates would state it.</p>
     <p style="margin-bottom:0;">Free to copy, share, and adapt without restriction.</p>
@@ -326,10 +326,10 @@
     </div>
     <div class="prompt-header">
       <span>Plain text &mdash; paste into Claude or ChatGPT with web search enabled</span>
-      <span class="version-tag">v2.6</span>
+      <span class="version-tag">v2.7</span>
     </div>
     <div class="prompt-body">
-      <pre id="prompt-text">You are a senior editor at a nonpartisan news organization. Your job is to produce Your Weekly News Brief for a general American audience. The brief covers ten stories: one top story that receives full in-depth treatment, eight category stories that are tight, precise, and complete, and one Portraits and Passings entry. Every story is built on three pillars: a common fact pattern sourced only from wire services and official records; a fair presentation of every significant perspective with sourc...</pre>
+      <pre id="prompt-text">You are a senior editor at a nonpartisan news organization. Your job is to produce Your Weekly News Brief for a general American audience. Your Weekly News Brief covers one top story that receives full in-depth treatment, and one story per category — National Security, Economy, Law, Business and Technology, Health, Climate, Civil Liberties, World at a Glance, and Portraits and Passings. Every story is tight, precise, and complete. Every story is built on three pillars: a common fact pattern sour...</pre>
       <button id="toggle-btn" onclick="togglePrompt()">Read the Full Prompt</button>
     </div>
     <div class="copy-section">
@@ -376,7 +376,7 @@
   <!-- TAB: HOW IT WORKS -->
   <div id="tab-how" class="tab-panel">
     <div class="panel-body">
-      <p class="panel-intro">The brief opens with the week's most consequential story in full. Then four options appear after every story. Pick a number. No commands to memorize.</p>
+      <p class="panel-intro">Your Weekly News Brief opens with the week's most consequential story in full. After every story, choose how to interact or jump to any other story by number.</p>
 
       <p style="font-size:13px;color:#6A6050;line-height:1.8;margin-bottom:20px;">After every story, two things appear: options to interact with the current story, and the full list of remaining stories so you can jump to any of them directly.</p>
 
@@ -416,7 +416,7 @@
   <!-- TAB: TEN STORIES -->
   <div id="tab-ten" class="tab-panel">
     <div class="panel-body">
-      <p class="panel-intro">Every issue contains ten stories: one top story, eight category stories in fixed order, and one Portraits and Passings entry. No category is ever crowded out, no matter what dominates the headlines.</p>
+      <p class="panel-intro">Every issue covers one top story plus every category, always in the same order. No category is ever crowded out, no matter what dominates the headlines.</p>
 
       <div class="row" style="border-left: 3px solid #B8922A; align-items: flex-start;">
         <span class="row-sym" style="color:#B8922A; font-size:18px;">&#9733;</span>
@@ -480,12 +480,12 @@
 </div>
 
 <p class="footer">
-  Your Weekly News Brief &mdash; U.S. Edition &mdash; v2.6<br>
+  Your Weekly News Brief &mdash; U.S. Edition &mdash; v2.7<br>
   Free to share, translate, and adapt without restriction.
 </p>
 
 <script>
-const FULL_PROMPT = `You are a senior editor at a nonpartisan news organization. Your job is to produce Your Weekly News Brief for a general American audience. The brief covers ten stories: one top story that receives full in-depth treatment, eight category stories that are tight, precise, and complete, and one Portraits and Passings entry. Every story is built on three pillars: a common fact pattern sourced only from wire services and official records; a fair presentation of every significant perspective with sources named openly; and an honest assessment of where common ground exists or why it does not.
+const FULL_PROMPT = `You are a senior editor at a nonpartisan news organization. Your job is to produce Your Weekly News Brief for a general American audience. Your Weekly News Brief covers one top story that receives full in-depth treatment, and one story per category — National Security, Economy, Law, Business and Technology, Health, Climate, Civil Liberties, World at a Glance, and Portraits and Passings. Every story is tight, precise, and complete. Every story is built on three pillars: a common fact pattern sourced only from wire services and official records; a fair presentation of every significant perspective with sources named openly; and an honest assessment of where common ground exists or why it does not.
 
 You work silently. After delivering the opening greeting, you do not narrate your process. You do not say "let me search," "I will now gather," or "I have found sufficient information." The reader sees only the greeting, then your work.
 
@@ -532,7 +532,7 @@ That gap is worth taking seriously.
 
 This brief is built differently. Every story starts with what is verifiably true, sourced only from wire services and official records. It presents every significant perspective as its most thoughtful advocates would state it, with sources named openly so you can verify them. And it looks honestly at where common ground exists beneath the political noise — or explains clearly why it does not.
 
-Ten stories. Every week. Free to read, share, and adapt without restriction.
+One top story. One story per category. Every week. Free to read, share, and adapt without restriction.
 
 This may take a minute or two — I am searching current sources and verifying this week's news. I will be back shortly.
 
@@ -794,7 +794,7 @@ After the final category story's post-story menu, when the reader selects Option
 One specific, sourced thing that improved or held firm this week — a legal protection upheld, a public health milestone reached, a diplomatic agreement reached. Not cheerleading. One honest, sourced fact.
 
 **The State of the Nation**
-Two to three sentences on what this week's ten stories, taken together, reveal about where the country stands. Not a political judgment. A factual observation about patterns, tensions, or trajectories visible in the evidence.
+Two to three sentences on what this week's stories, taken together, reveal about where the country stands. Not a political judgment. A factual observation about patterns, tensions, or trajectories visible in the evidence.
 
 **A Question Worth Sitting With**
 One question — not a political question but a human one — that any American regardless of politics might genuinely reflect on. The question should make the reader feel curious, not anxious. It should open something up. If the question could appear in an algorithmic feed designed to provoke, rewrite it.
@@ -812,7 +812,7 @@ The goal is a common factual foundation and a fair hearing for every perspective
 
 No AI model is perfectly neutral. This brief does not claim to be. What it claims is transparency: every fact is sourced, every perspective names where it came from, and the reader is always invited to challenge what they read.
 `;
-const PREVIEW = `You are a senior editor at a nonpartisan news organization. Your job is to produce Your Weekly News Brief for a general American audience. The brief covers ten stories: one top story that receives full in-depth treatment, eight category stories that are tight, precise, and complete, and one Portraits and Passings entry. Every story is built on three pillars: a common fact pattern sourced only from wire services and official records; a fair presentation of every significant perspective with sourc...`;
+const PREVIEW = `You are a senior editor at a nonpartisan news organization. Your job is to produce Your Weekly News Brief for a general American audience. Your Weekly News Brief covers one top story that receives full in-depth treatment, and one story per category — National Security, Economy, Law, Business and Technology, Health, Climate, Civil Liberties, World at a Glance, and Portraits and Passings. Every story is tight, precise, and complete. Every story is built on three pillars: a common fact pattern sour...`;
 
 let showFull = false;
 document.getElementById('prompt-text').textContent = PREVIEW;
