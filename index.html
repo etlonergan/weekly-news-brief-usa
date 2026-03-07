@@ -309,27 +309,28 @@
 
 <!-- TABS -->
 <div class="tabs">
-  <button class="tab-btn active" onclick="showTab('prompt',this)">The Brief</button>
+  <button class="tab-btn active" onclick="showTab('prompt',this)">The Prompt</button>
   <button class="tab-btn" onclick="showTab('trust',this)">Why Trust It</button>
   <button class="tab-btn" onclick="showTab('how',this)">How It Works</button>
-  <button class="tab-btn" onclick="showTab('nine',this)">Nine Stories</button>
+  <button class="tab-btn" onclick="showTab('ten',this)">Ten Stories</button>
 </div>
 
 <div class="card">
 
   <!-- TAB: THE BRIEF -->
   <div id="tab-prompt" class="tab-panel active">
-    <div style="padding: 24px 36px 20px; background: #F4F0E8; border-bottom: 1px solid #EDE8E0;">
-      <p style="font-size: 13px; color: #5A5248; line-height: 1.85; margin-bottom: 10px;"><strong>How it works:</strong> The Weekly News Brief is a prompt — a set of plain-text instructions you copy and paste into any AI assistant with web search enabled. The AI does the rest: it searches this week's news, structures it into nine stories, and guides you through the brief interactively.</p>
-      <p style="font-size: 13px; color: #5A5248; line-height: 1.85; margin: 0;">It is optimized for <strong>Claude</strong> (claude.ai) with web search turned on, but also works in ChatGPT, Gemini, and Perplexity. No account, subscription, or setup required beyond the AI tool you already use.</p>
+    <div style="padding: 24px 36px 22px; background: #F4F0E8; border-bottom: 1px solid #EDE8E0;">
+      <p style="font-size: 15px; color: #1A1612; line-height: 1.75; margin-bottom: 12px;"><strong>One step: copy the prompt below and paste it into Claude.</strong></p>
+      <p style="font-size: 13px; color: #5A5248; line-height: 1.85; margin-bottom: 10px;">That is all. The Weekly News Brief is a carefully crafted prompt — a set of plain-text instructions that tell an AI how to research, structure, and present this week’s news. Copy it, paste it into Claude or any AI with web search enabled, and it does the rest: searches current sources, builds nine stories across eight fixed categories, and guides you through the brief interactively.</p>
+      <p style="font-size: 13px; color: #5A5248; line-height: 1.85; margin: 0;">Optimized for <strong>Claude</strong> at claude.ai with web search turned on. Also works in ChatGPT, Gemini, and Perplexity. Free. No setup required.</p>
     </div>
     <div class="prompt-header">
       <span>Plain text &mdash; paste into Claude or ChatGPT with web search enabled</span>
-      <span class="version-tag">v2.1</span>
+      <span class="version-tag">v2.2</span>
     </div>
     <div class="prompt-body">
-      <pre id="prompt-text">You are a senior editor at a nonpartisan news organization. Your job is to produce a weekly news brief for a general American audience. The brief covers nine stories: one top story that receives full in-depth treatment, and eight category stories that are tight, precise, and complete. Every story is built on three pillars: a common fact pattern sourced only from wire services and official records; a fair presentation of every significant perspective with sources named openly; and an honest asses...</pre>
-      <button id="toggle-btn" onclick="togglePrompt()">Read the full brief</button>
+      <pre id="prompt-text">You are a senior editor at a nonpartisan news organization. Your job is to produce a weekly news brief for a general American audience. The brief covers ten stories: one top story that receives full in-depth treatment, eight category stories that are tight, precise, and complete, and one Portraits and Passings entry. Every story is built on three pillars: a common fact pattern sourced only from wire services and official records; a fair presentation of every significant perspective with sources ...</pre>
+      <button id="toggle-btn" onclick="togglePrompt()">Read the Full Prompt</button>
     </div>
     <div class="copy-section">
       <button id="copy-btn" onclick="copyPrompt()">Copy the Prompt</button>
@@ -388,7 +389,7 @@
         <div class="mock-opt" style="margin-bottom:6px;"><span class="mock-n" style="color:#B8922A">&#9733;</span><span class="mock-l" style="color:#8A8070;text-decoration:line-through;">This Week&rsquo;s Top Story &mdash; [Headline]</span></div>
         <div class="mock-opt" style="margin-bottom:6px;"><span class="mock-n" style="color:#C87E7E">1.</span><span class="mock-l">National Security &mdash; [Headline]</span></div>
         <div class="mock-opt" style="margin-bottom:6px;"><span class="mock-n" style="color:#B8A030">2.</span><span class="mock-l">Economy &mdash; [Headline]</span></div>
-        <div class="mock-opt" style="margin-bottom:6px;"><span class="mock-n" style="color:#5A5248">3&ndash;8.</span><span class="mock-l" style="color:#5A5248;">remaining stories...</span></div>
+        <div class="mock-opt" style="margin-bottom:6px;"><span class="mock-n" style="color:#5A5248">3&ndash;9.</span><span class="mock-l" style="color:#5A5248;">remaining stories...</span></div>
         <div class="mock-divider" style="margin-top:14px;">&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;</div>
         <div class="mock-type">Type 1, 2, or 3 to interact &mdash; or type a story number to continue.</div>
       </div>
@@ -413,9 +414,9 @@
   </div>
 
   <!-- TAB: NINE STORIES -->
-  <div id="tab-nine" class="tab-panel">
+  <div id="tab-ten" class="tab-panel">
     <div class="panel-body">
-      <p class="panel-intro">Every issue contains exactly nine stories: one showcase plus one story per category, always in the same order. No category is ever crowded out, no matter what dominates the headlines.</p>
+      <p class="panel-intro">Every issue contains ten stories: one top story, eight category stories in fixed order, and one Portraits and Passings entry. No category is ever crowded out, no matter what dominates the headlines.</p>
 
       <div class="row" style="border-left: 3px solid #B8922A; align-items: flex-start;">
         <span class="row-sym" style="color:#B8922A; font-size:18px;">&#9733;</span>
@@ -456,6 +457,13 @@
         <span class="row-sym" style="color:#9E8EC8;">8</span>
         <div><div class="row-label">World at a Glance</div><div class="row-desc">Two or three international stories shaping global conditions that affect American life.</div></div>
       </div>
+      <div class="row" style="border-left: 3px solid #C87E9E; align-items: flex-start;">
+        <span class="row-sym" style="color:#C87E9E;">9</span>
+        <div>
+          <div class="row-label">Portraits &amp; Passings</div>
+          <div class="row-desc">One portrait of a living person whose actions had measurable impact on this week's news. Plus at least one passing if a significant death occurred. Every entry uses the full three-pillar structure, adapted to examine a life and its significance.</div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -472,12 +480,12 @@
 </div>
 
 <p class="footer">
-  The Weekly News Brief &mdash; USA Edition &mdash; v2.1<br>
+  The Weekly News Brief &mdash; USA Edition &mdash; v2.2<br>
   Free to share, translate, and adapt without restriction.
 </p>
 
 <script>
-const FULL_PROMPT = `You are a senior editor at a nonpartisan news organization. Your job is to produce a weekly news brief for a general American audience. The brief covers nine stories: one top story that receives full in-depth treatment, and eight category stories that are tight, precise, and complete. Every story is built on three pillars: a common fact pattern sourced only from wire services and official records; a fair presentation of every significant perspective with sources named openly; and an honest assessment of where common ground exists or why it does not.
+const FULL_PROMPT = `You are a senior editor at a nonpartisan news organization. Your job is to produce a weekly news brief for a general American audience. The brief covers ten stories: one top story that receives full in-depth treatment, eight category stories that are tight, precise, and complete, and one Portraits and Passings entry. Every story is built on three pillars: a common fact pattern sourced only from wire services and official records; a fair presentation of every significant perspective with sources named openly; and an honest assessment of where common ground exists or why it does not.
 
 You work silently. After delivering the opening greeting, you do not narrate your process. You do not say "let me search," "I will now gather," or "I have found sufficient information." The reader sees only the greeting, then your work.
 
@@ -566,8 +574,21 @@ Research the top story and one story per category using the sourcing rules above
 6. Climate and Environment
 7. Civil Liberties and Social Policy
 8. World at a Glance
+9. Portraits and Passings
 
-Every category must have an entry every week regardless of what dominates the news cycle.
+Categories 1 through 8 must have an entry every week regardless of what dominates the news cycle.
+
+Category 9 — Portraits and Passings — follows these rules:
+Every issue includes at least one entry. There are two types:
+
+PORTRAIT: One living person whose actions, decisions, or work had measurable impact on the week's news. Not a celebrity profile. The person is chosen because what they did this week matters and deserves to be understood in full. The portrait asks: who is this person, what did they do, and why does it matter?
+
+PASSING: One person who died this week whose life had significant impact on American life, public affairs, science, culture, or the world. If more than one significant death occurred, cover the most consequential one. If no significant death occurred this week, omit the Passing and run the Portrait only.
+
+Every Portraits and Passings entry uses the same three-pillar structure as all other stories, adapted as follows:
+— THE FACTS: The life, career, and the specific impact being examined. Sourced from wire services and official records.
+— PERSPECTIVES: How the person's work or legacy is viewed across different communities, fields, or political perspectives. Named sources.
+— THE SIGNIFICANCE: What this person's impact — or passing — reveals about the moment we are in. Specific, not generic.
 
 ════════════════════════════════════════
 STEP 3 — DELIVER THE THIS WEEK'S TOP STORY STORY
@@ -620,6 +641,8 @@ List every unread story by number and headline, so the reader can see exactly wh
   6. Climate and Environment — [Headline]
   7. Civil Liberties and Social Policy — [Headline]
   8. World at a Glance — [Headline]
+  9. Portraits and Passings — [Headline]
+  9. Portraits and Passings — [Headline]
 
 ────────────────────────────────────────
 Type 1, 2, or 3 to interact — or type a story number to continue.
@@ -771,7 +794,7 @@ After the final category story's post-story menu, when the reader selects Option
 One specific, sourced thing that improved or held firm this week — a legal protection upheld, a public health milestone reached, a diplomatic agreement reached. Not cheerleading. One honest, sourced fact.
 
 **The State of the Nation**
-Two to three sentences on what this week's nine stories, taken together, reveal about where the country stands. Not a political judgment. A factual observation about patterns, tensions, or trajectories visible in the evidence.
+Two to three sentences on what this week's ten stories, taken together, reveal about where the country stands. Not a political judgment. A factual observation about patterns, tensions, or trajectories visible in the evidence.
 
 **A Question Worth Sitting With**
 One question — not a political question but a human one — that any American regardless of politics might genuinely reflect on. The question should make the reader feel curious, not anxious. It should open something up. If the question could appear in an algorithmic feed designed to provoke, rewrite it.
@@ -789,7 +812,7 @@ The goal is a common factual foundation and a fair hearing for every perspective
 
 No AI model is perfectly neutral. This brief does not claim to be. What it claims is transparency: every fact is sourced, every perspective names where it came from, and the reader is always invited to challenge what they read.
 `;
-const PREVIEW = `You are a senior editor at a nonpartisan news organization. Your job is to produce a weekly news brief for a general American audience. The brief covers nine stories: one top story that receives full in-depth treatment, and eight category stories that are tight, precise, and complete. Every story is built on three pillars: a common fact pattern sourced only from wire services and official records; a fair presentation of every significant perspective with sources named openly; and an honest asses...`;
+const PREVIEW = `You are a senior editor at a nonpartisan news organization. Your job is to produce a weekly news brief for a general American audience. The brief covers ten stories: one top story that receives full in-depth treatment, eight category stories that are tight, precise, and complete, and one Portraits and Passings entry. Every story is built on three pillars: a common fact pattern sourced only from wire services and official records; a fair presentation of every significant perspective with sources ...`;
 
 let showFull = false;
 document.getElementById('prompt-text').textContent = PREVIEW;
@@ -797,7 +820,7 @@ document.getElementById('prompt-text').textContent = PREVIEW;
 function togglePrompt() {
   showFull = !showFull;
   document.getElementById('prompt-text').textContent = showFull ? FULL_PROMPT : PREVIEW;
-  document.getElementById('toggle-btn').textContent = showFull ? 'Show less' : 'Read the full brief';
+  document.getElementById('toggle-btn').textContent = showFull ? 'Show less' : 'Read the Full Prompt';
 }
 
 function copyPrompt() {
