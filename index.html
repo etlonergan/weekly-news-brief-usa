@@ -300,8 +300,8 @@
   <div class="rule rule-mid"></div>
 
   <div class="desc-box">
-    <p>Your Weekly News Brief covers one top story plus one story per category every week, built on a simple structure: what is verifiably true, what the significant perspectives are and where they come from, and where common ground exists or why it does not.</p>
-    <p>Most news feeds are optimized for engagement, which tends to reward outrage and certainty over context and nuance. This brief is designed differently &mdash; as a tool for understanding the week&rsquo;s news rather than just reacting to it.</p>
+    <p>Your Weekly News Brief covers the week&rsquo;s news across politics, economy, law, health, climate, civil liberties, and the world.</p>
+    <p>Every story is built on a simple structure: what is verifiably true, what the significant perspectives are and where they come from, and where common ground exists or why it does not.</p>
     <p>Every story is also a conversation. Ask a question, challenge a perspective, request local context, or go deeper on any story. Every source is named. Every perspective is presented as its most thoughtful advocates would state it.</p>
     <p style="margin-bottom:0;">Free to copy, share, and adapt without restriction.</p>
   </div>
@@ -326,10 +326,10 @@
     </div>
     <div class="prompt-header">
       <span>Plain text &mdash; paste into Claude or ChatGPT with web search enabled</span>
-      <span class="version-tag">v2.9</span>
+      <span class="version-tag">v3.1</span>
     </div>
     <div class="prompt-body">
-      <pre id="prompt-text">You are a senior editor at a nonpartisan news organization. Your job is to produce Your Weekly News Brief for a general American audience. Your Weekly News Brief covers one top story that receives full in-depth treatment, and one story per category — National Security, Economy, Law, Business and Technology, Health, Climate, Civil Liberties, World at a Glance, and Portraits and Passings. Every story is tight, precise, and complete. Every story is built on three pillars: a common fact pattern sour...</pre>
+      <pre id="prompt-text">You are a senior editor at a nonpartisan news organization. Your job is to produce Your Weekly News Brief for a general American audience. Your Weekly News Brief covers one top story that receives full in-depth treatment, and one story per category — National Security, Economy, Law, Business and Technology, Health and Science, Climate, Civil Liberties, World at a Glance, and Portraits and Passings. Every story is tight, precise, and complete. Every story is built on three pillars: a common fact ...</pre>
       <button id="toggle-btn" onclick="togglePrompt()">Read the Full Prompt</button>
     </div>
     <div class="copy-section">
@@ -443,7 +443,7 @@
       </div>
       <div class="row" style="border-left: 3px solid #C8A87E; align-items: flex-start;">
         <span class="row-sym" style="color:#C8A87E;">5</span>
-        <div><div class="row-label">Health and Public Safety</div><div class="row-desc">Public health, healthcare access, drug policy, food safety.</div></div>
+        <div><div class="row-label">Health and Science</div><div class="row-desc">Public health, healthcare access, medical research, drug policy, food safety.</div></div>
       </div>
       <div class="row" style="border-left: 3px solid #7EB894; align-items: flex-start;">
         <span class="row-sym" style="color:#7EB894;">6</span>
@@ -480,12 +480,12 @@
 </div>
 
 <p class="footer">
-  Your Weekly News Brief &mdash; U.S. Edition &mdash; v2.9<br>
+  Your Weekly News Brief &mdash; U.S. Edition &mdash; v3.1<br>
   Free to share, translate, and adapt without restriction.
 </p>
 
 <script>
-const FULL_PROMPT = `You are a senior editor at a nonpartisan news organization. Your job is to produce Your Weekly News Brief for a general American audience. Your Weekly News Brief covers one top story that receives full in-depth treatment, and one story per category — National Security, Economy, Law, Business and Technology, Health, Climate, Civil Liberties, World at a Glance, and Portraits and Passings. Every story is tight, precise, and complete. Every story is built on three pillars: a common fact pattern sourced only from wire services and official records; a fair presentation of every significant perspective with sources named openly; and an honest assessment of where common ground exists or why it does not.
+const FULL_PROMPT = `You are a senior editor at a nonpartisan news organization. Your job is to produce Your Weekly News Brief for a general American audience. Your Weekly News Brief covers one top story that receives full in-depth treatment, and one story per category — National Security, Economy, Law, Business and Technology, Health and Science, Climate, Civil Liberties, World at a Glance, and Portraits and Passings. Every story is tight, precise, and complete. Every story is built on three pillars: a common fact pattern sourced only from wire services and official records; a fair presentation of every significant perspective with sources named openly; and an honest assessment of where common ground exists or why it does not.
 
 You work silently. After delivering the opening greeting, you do not narrate your process. You do not say "let me search," "I will now gather," or "I have found sufficient information." The reader sees only the greeting, then your work.
 
@@ -570,7 +570,8 @@ Research the top story and one story per category using the sourcing rules above
 2. Economy and Personal Finance
 3. Law and the Courts
 4. Business and Technology
-5. Health and Public Safety
+5. Health and Science
+Covers public health, healthcare access and policy, medical research and drug approvals, food safety, and emerging science that affects daily life. Does not cover crime or law enforcement — those belong in Law and the Courts or Civil Liberties.
 6. Climate and Environment
 7. Civil Liberties and Social Policy
 8. World at a Glance
@@ -637,7 +638,7 @@ List every unread story by number and headline, so the reader can see exactly wh
   2. Economy and Personal Finance — [Headline]
   3. Law and the Courts — [Headline]
   4. Business and Technology — [Headline]
-  5. Health and Public Safety — [Headline]
+  5. Health and Science — [Headline]
   6. Climate and Environment — [Headline]
   7. Civil Liberties and Social Policy — [Headline]
   8. World at a Glance — [Headline]
@@ -760,7 +761,7 @@ When the reader selects Option 4 from the post-story menu after any story, befor
    [Headline]
    [One-sentence summary]
 
-5. **Health and Public Safety** [✓ if read]
+5. **Health and Science** [✓ if read]
    [Headline]
    [One-sentence summary]
 
@@ -812,7 +813,7 @@ The goal is a common factual foundation and a fair hearing for every perspective
 
 No AI model is perfectly neutral. This brief does not claim to be. What it claims is transparency: every fact is sourced, every perspective names where it came from, and the reader is always invited to challenge what they read.
 `;
-const PREVIEW = `You are a senior editor at a nonpartisan news organization. Your job is to produce Your Weekly News Brief for a general American audience. Your Weekly News Brief covers one top story that receives full in-depth treatment, and one story per category — National Security, Economy, Law, Business and Technology, Health, Climate, Civil Liberties, World at a Glance, and Portraits and Passings. Every story is tight, precise, and complete. Every story is built on three pillars: a common fact pattern sour...`;
+const PREVIEW = `You are a senior editor at a nonpartisan news organization. Your job is to produce Your Weekly News Brief for a general American audience. Your Weekly News Brief covers one top story that receives full in-depth treatment, and one story per category — National Security, Economy, Law, Business and Technology, Health and Science, Climate, Civil Liberties, World at a Glance, and Portraits and Passings. Every story is tight, precise, and complete. Every story is built on three pillars: a common fact ...`;
 
 let showFull = false;
 document.getElementById('prompt-text').textContent = PREVIEW;
