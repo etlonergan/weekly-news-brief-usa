@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Weekly News Brief &mdash; U.S. Edition</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: #F4F1EB;
+      font-family: Georgia, "Times New Roman", serif;
+      color: #1A1612;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 64px 24px 96px;
+    }
+
+    /* MASTHEAD */
+    .masthead {
+      width: 100%;
+      max-width: 680px;
+      text-align: center;
+      margin-bottom: 0;
+    }
+    .edition-label {
+      font-size: 10px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #B8922A;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .rule { width: 32px; height: 2px; background: #B8922A; margin: 0 auto; }
+    .rule-top { margin-bottom: 20px; }
+    .rule-mid { margin: 20px auto 28px; }
+    h1 {
+      font-size: clamp(40px, 8vw, 68px);
+      font-weight: normal;
+      letter-spacing: -2px;
+      line-height: 1.0;
+      color: #1A1612;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: clamp(13px, 2vw, 16px);
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #B8922A;
+      margin-bottom: 0;
+    }
+    .lede {
+      font-size: 15px;
+      color: #5A5248;
+      line-height: 1.85;
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+    .lede strong {
+      font-style: normal;
+      color: #1A1612;
+      font-weight: normal;
+    }
+    .desc-box {
+      background: #EDE8DE;
+      border-left: 3px solid #B8922A;
+      padding: 18px 24px;
+      text-align: left;
+      margin-bottom: 0;
+    }
+    .desc-box p {
+      font-size: 13px;
+      color: #6A6050;
+      line-height: 1.85;
+      margin-bottom: 8px;
+    }
+    .desc-box p:last-child { margin-bottom: 0; }
+    .paine-box {
+      background: #F0EBE0;
+      border: 1px solid #DDD6C4;
+      padding: 14px 24px;
+      text-align: left;
+    }
+    .paine-box p {
+      font-size: 12px;
+      color: #9A8A6A;
+      line-height: 1.8;
+      font-style: italic;
+    }
+
+    /* TABS */
+    .tabs {
+      display: flex;
+      width: 100%;
+      max-width: 680px;
+      gap: 2px;
+    }
+    .tab-btn {
+      flex: 1;
+      background: #E4DFD5;
+      border: none;
+      border-bottom: 2px solid #D4CFC5;
+      color: #8A8070;
+      padding: 13px 6px;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-family: Georgia, serif;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .tab-btn:hover { background: #EDE8DE; color: #5A5248; }
+    .tab-btn.active {
+      background: #FFFFFF;
+      border-bottom: 2px solid #B8922A;
+      color: #1A1612;
+    }
+
+    /* CARD */
+    .card {
+      width: 100%;
+      max-width: 680px;
+      background: #FFFFFF;
+      border: 1px solid #DDD6C4;
+      border-top: none;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.06);
+      margin-bottom: 4px;
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* PROMPT TAB */
+    .prompt-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 36px 0;
+      border-bottom: 1px solid #EDE8E0;
+      padding-bottom: 16px;
+    }
+    .prompt-header span {
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: #C0B8A0;
+      text-transform: uppercase;
+    }
+    .version-tag {
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: #B8922A;
+      text-transform: uppercase;
+    }
+    .prompt-body { padding: 24px 36px 0; }
+    pre#prompt-text {
+      font-family: "Courier New", monospace;
+      font-size: 11.5px;
+      line-height: 1.95;
+      color: #5A5248;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    button#toggle-btn {
+      background: none;
+      border: none;
+      color: #B8922A;
+      font-size: 12px;
+      cursor: pointer;
+      padding: 16px 0 6px;
+      font-family: Georgia, serif;
+      font-style: italic;
+      display: block;
+    }
+    .copy-section { padding: 24px 36px 36px; }
+    button#copy-btn {
+      width: 100%;
+      background: #1A1612;
+      color: #F0EAD8;
+      border: none;
+      padding: 22px;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: Georgia, serif;
+      transition: all 0.2s ease;
+    }
+    button#copy-btn:hover { background: #2A2218; }
+    button#copy-btn.copied { background: #1A2E1A; color: #8EC87E; }
+    .copy-note {
+      text-align: center;
+      font-size: 11px;
+      color: #A09880;
+      margin-top: 14px;
+      line-height: 1.75;
+    }
+
+    /* PANEL BODY */
+    .panel-body { padding: 32px 36px; }
+    .panel-intro {
+      font-size: 14px;
+      color: #6A6050;
+      line-height: 1.85;
+      margin-bottom: 28px;
+      font-style: italic;
+    }
+    .section-hed {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #B8922A;
+      margin-bottom: 16px;
+      margin-top: 28px;
+    }
+
+    /* ROW ITEMS */
+    .row { display: flex; gap: 16px; padding: 16px 20px; background: #F8F5EF; margin-bottom: 3px; }
+    .row-sym { font-family: monospace; font-weight: bold; min-width: 22px; padding-top: 1px; }
+    .row-label { font-size: 13px; color: #1A1612; margin-bottom: 5px; font-weight: bold; }
+    .row-desc { font-size: 12px; color: #7A7060; line-height: 1.8; }
+    .row-sources { font-size: 11px; color: #A09880; line-height: 1.7; font-style: italic; margin-top: 6px; }
+
+    /* MOCK MENU */
+    .mock-menu {
+      background: #1A1612;
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      font-family: "Courier New", monospace;
+    }
+    .mock-divider { font-size: 11px; color: #332E28; letter-spacing: 1px; }
+    .mock-title { font-size: 12px; color: #C8B890; margin: 14px 0 12px; }
+    .mock-opt { display: flex; gap: 14px; margin-bottom: 10px; align-items: baseline; }
+    .mock-n { font-weight: bold; min-width: 16px; font-size: 14px; }
+    .mock-l { color: #E8E0D0; font-size: 12px; }
+    .mock-type { font-size: 11px; color: #4A4640; margin-top: 10px; }
+
+    /* CALLOUT */
+    .callout {
+      padding: 18px 22px;
+      background: #F4F0E8;
+      border-left: 3px solid #B8922A;
+      margin-top: 3px;
+    }
+    .callout-label {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #B8922A;
+      margin-bottom: 10px;
+    }
+    .callout p { font-size: 13px; color: #6A6050; line-height: 1.8; margin-bottom: 8px; }
+    .callout p:last-child { margin-bottom: 0; }
+
+    /* SOURCE STRIP */
+    .source-strip {
+      width: 100%;
+      max-width: 680px;
+      background: #FFF;
+      border: 1px solid #DDD6C4;
+      padding: 16px 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .strip-label {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #C0B098;
+      margin-right: 6px;
+    }
+    .pub { font-size: 11px; color: #7A6A50; background: #F4F0E8; padding: 4px 12px; border: 1px solid #E0D8C4; }
+
+    .footer {
+      margin-top: 36px;
+      font-size: 11px;
+      color: #C0B098;
+      letter-spacing: 1px;
+      text-align: center;
+      line-height: 1.9;
+    }
+
+    @media (max-width: 580px) {
+      body { padding: 40px 14px 64px; }
+      .panel-body, .prompt-body, .copy-section, .prompt-header { padding-left: 20px; padding-right: 20px; }
+      .tab-btn { font-size: 8px; letter-spacing: 0.5px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="rule rule-top"></div>
+  <span class="edition-label">Your</span>
+  <h1>Weekly News Brief</h1>
+  <p class="subtitle">U.S. Edition</p>
+  <div class="rule rule-mid"></div>
+
+  <div class="desc-box">
+    <p>Your Weekly News Brief is a prompt. Paste it into Claude, and it delivers a structured analysis of the week&rsquo;s news across politics, government, economy, law, health, science, climate, civil liberties, and the world.</p>
+    <p>Every story is built on a simple structure: what is verifiably true, what the significant perspectives are and where they come from, and where common ground exists or why it does not.</p>
+    <p>Every story is also a conversation. Ask a question, challenge a perspective, request local context, or go deeper on any story. Every source is named. Every perspective is presented as its most thoughtful advocates would state it.</p>
+    <p style="margin-bottom:0;">Free to copy, share, and adapt without restriction.</p>
+  </div>
+</div>
+
+<div style="width:100%; max-width:680px; margin: 24px auto 0;">
+  <button id="copy-btn-top" onclick="copyPrompt()" style="display:block; width:100%; background:#1A1612; color:#F4F0E8; font-family:Georgia,'Times New Roman',serif; font-size:11px; letter-spacing:4px; text-transform:uppercase; padding:22px; border:none; cursor:pointer; text-align:center;">Copy the Prompt</button>
+  <p style="font-size:12px; color:#8A8070; margin-top:12px; margin-bottom:24px; font-family:Georgia,'Times New Roman',serif; text-align:center;">Designed for Claude with web search enabled. Free forever. Free to share without restriction.</p>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab('prompt',this)">The Prompt</button>
+  <button class="tab-btn" onclick="showTab('trust',this)">Why Trust It</button>
+  <button class="tab-btn" onclick="showTab('how',this)">How It Works</button>
+  <button class="tab-btn" onclick="showTab('ten',this)">Ten Stories</button>
+</div>
+
+<div class="card">
+
+  <!-- TAB: THE BRIEF -->
+  <div id="tab-prompt" class="tab-panel active">
+
+    <div class="prompt-header">
+      <span>Plain text &mdash; paste into Claude with web search enabled</span>
+      <span class="version-tag">v5.1</span>
+    </div>
+    <div class="prompt-body">
+      <pre id="prompt-text">You are a senior editor at a nonpartisan news organization. Your job is to produce Your Weekly News Brief for a general American audience. Your Weekly News Brief is a structured analysis of the week&#x27;s news — not a recounting of it. It covers one top story that receives full in-depth treatment, and one story per category — Politics and Government, National Security, Economy and Markets, Law and the Courts, Business and Technology, Health and Science, Climate and Environment, Civil Liberties and S...</pre>
+      <button id="toggle-btn" onclick="togglePrompt()">Read the Full Prompt</button>
+    </div>
+
+  </div>
+
+  <!-- TAB: WHY TRUST IT -->
+  <div id="tab-trust" class="tab-panel">
+    <div class="panel-body">
+      <p class="panel-intro">No source is perfectly neutral, and this brief does not claim to be. It earns trust through three structural mechanisms the reader can verify for themselves.</p>
+
+      <div class="row" style="border-left: 3px solid #7E9EC8; flex-direction: column;">
+        <div class="row-label" style="color:#7E9EC8;">Pillar 1 &mdash; The Common Fact Pattern</div>
+        <div class="row-desc">What happened, in neutral and precise language. Every claim sourced only from wire services, major broadcasters, official government records, or peer-reviewed research. No loaded language. No interpretation. A foundation any reader can verify.</div>
+        <div class="row-sources">Fact sources: Reuters, AP, AFP, BBC, NPR, PBS, government records, court filings, peer-reviewed research.</div>
+      </div>
+
+      <div class="row" style="border-left: 3px solid #A67EA8; flex-direction: column;">
+        <div class="row-label" style="color:#A67EA8;">Pillar 2 &mdash; Perspectives in Tension</div>
+        <div class="row-desc">Every significant perspective rendered as its most thoughtful proponents would state it. Opens with the evidence-based view, then conservative, then progressive. Every sourcing disclosure is named openly so the reader can verify and challenge it. Minimum two sources per perspective. Symmetric sourcing required by structure.</div>
+        <div class="row-sources">Perspective sources: partisan and advocacy outlets across the spectrum, named openly, always labeled as commentary.</div>
+      </div>
+
+      <div class="row" style="border-left: 3px solid #7EB894; flex-direction: column;">
+        <div class="row-label" style="color:#7EB894;">Pillar 3 &mdash; Where the Lines Are Drawn, and Where They Blur</div>
+        <div class="row-desc">Names the divide honestly and specifically. Then identifies what people across the divide actually share. Where possible, a concrete real-world example of people acting together. If genuine common ground does not exist, the brief says so and explains why.</div>
+        <div class="row-sources">Quality test applied: if the observation applies to any political topic generically, it is not specific enough.</div>
+      </div>
+
+      <div class="callout">
+        <div class="callout-label">The Reader Challenge Mechanism</div>
+        <p>After every perspectives section, the brief adds a standing invitation: "If any perspective here seems incomplete or misrepresented, type B and tell me how it should read."</p>
+        <p>Corrections are incorporated transparently, with a note on what changed and why. The brief is designed to be improved by its readers.</p>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Symmetric Sourcing</div>
+        <p>For every domestic US story, at least two conservative-leaning and two progressive-leaning sources must be consulted, regardless of which side dominates the news cycle. Symmetry is structural, not editorial.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: HOW IT WORKS -->
+  <div id="tab-how" class="tab-panel">
+    <div class="panel-body">
+      <p class="panel-intro">Your Weekly News Brief opens with the week's most consequential story in full. After every story, choose how to interact or jump to any other story by number.</p>
+
+      <p style="font-size:13px;color:#6A6050;line-height:1.8;margin-bottom:20px;">After every story, two things appear: options to interact with the current story, and the full list of remaining stories so you can jump to any of them directly.</p>
+
+      <div class="mock-menu">
+        <div class="mock-title" style="margin-top:4px;">Want to go further with this story?</div>
+        <div class="mock-opt"><span class="mock-n" style="color:#7E9EC8">A.</span><span class="mock-l">Go deeper &mdash; more context and background</span></div>
+        <div class="mock-opt"><span class="mock-n" style="color:#A67EA8">B.</span><span class="mock-l">Ask a question or push back on anything</span></div>
+        <div class="mock-opt"><span class="mock-n" style="color:#C8B77E">C.</span><span class="mock-l">Get local context for my area</span></div>
+        <div class="mock-divider" style="margin:14px 0 10px;">&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;</div>
+        <div class="mock-opt" style="margin-bottom:6px;"><span class="mock-n" style="color:#B8922A">&#9733;</span><span class="mock-l" style="color:#8A8070;text-decoration:line-through;">This Week&rsquo;s Top Story &mdash; [Headline]</span></div>
+        <div class="mock-opt" style="margin-bottom:6px;"><span class="mock-n" style="color:#C87E7E">1.</span><span class="mock-l">National Security &mdash; [Headline]</span></div>
+        <div class="mock-opt" style="margin-bottom:6px;"><span class="mock-n" style="color:#B8A030">2.</span><span class="mock-l">Economy &mdash; [Headline]</span></div>
+        <div class="mock-opt" style="margin-bottom:6px;"><span class="mock-n" style="color:#5A5248">3&ndash;9.</span><span class="mock-l" style="color:#5A5248;">remaining stories...</span></div>
+        <div class="mock-divider" style="margin-top:14px;">&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;</div>
+        <div class="mock-type">Type A, B, or C to interact &mdash; or type a story number to continue.</div>
+      </div>
+
+      <div class="row" style="border-left: 3px solid #7E9EC8;">
+        <span class="row-sym" style="color:#7E9EC8; font-size:18px;">A</span>
+        <div><div class="row-label">Go deeper</div><div class="row-desc">More historical context, background, and sourcing on the current story.</div></div>
+      </div>
+      <div class="row" style="border-left: 3px solid #A67EA8;">
+        <span class="row-sym" style="color:#A67EA8; font-size:18px;">B</span>
+        <div><div class="row-label">Ask or push back</div><div class="row-desc">Ask anything about the story or challenge how a perspective is framed. Corrections are incorporated transparently.</div></div>
+      </div>
+      <div class="row" style="border-left: 3px solid #C8B77E;">
+        <span class="row-sym" style="color:#C8B77E; font-size:18px;">C</span>
+        <div><div class="row-label">Get local context</div><div class="row-desc">The brief asks for your city or state only when you choose this. Never before.</div></div>
+      </div>
+      <div class="row" style="border-left: 3px solid #B8922A;">
+        <span class="row-sym" style="color:#B8922A; font-size:18px;">&#9758;</span>
+        <div><div class="row-label">Jump to any story</div><div class="row-desc">Every unread story is listed by headline. Type a number to go directly there. Completed stories are marked.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: TEN STORIES -->
+  <div id="tab-ten" class="tab-panel">
+    <div class="panel-body">
+      <p class="panel-intro">Every issue covers one top story plus every category, always in the same order. No category is ever crowded out, no matter what dominates the headlines.</p>
+
+      <div class="row" style="border-left: 3px solid #B8922A; align-items: flex-start;">
+        <span class="row-sym" style="color:#B8922A; font-size:18px;">&#9733;</span>
+        <div>
+          <div class="row-label">This Week's Top Story</div>
+          <div class="row-desc">The most consequential story of the week. Full treatment at 800 to 1,000 words. The first thing you read every issue. Its home category still gets its own separate entry.</div>
+        </div>
+      </div>
+      <div class="row" style="border-left: 3px solid #C87E7E; align-items: flex-start;">
+        <span class="row-sym" style="color:#C87E7E;">1</span>
+        <div><div class="row-label">National Security and Foreign Policy</div><div class="row-desc">Military action, diplomacy, sanctions, intelligence matters.</div></div>
+      </div>
+      <div class="row" style="border-left: 3px solid #B8A030; align-items: flex-start;">
+        <span class="row-sym" style="color:#B8A030;">2</span>
+        <div><div class="row-label">Economy and Markets</div><div class="row-desc">Jobs, deficits, interest rates, housing, trade, financial markets, and economic conditions that affect how Americans live and work.</div></div>
+      </div>
+      <div class="row" style="border-left: 3px solid #7E9EC8; align-items: flex-start;">
+        <span class="row-sym" style="color:#7E9EC8;">3</span>
+        <div><div class="row-label">Law and the Courts</div><div class="row-desc">Supreme Court rulings, constitutional questions, major legal developments.</div></div>
+      </div>
+      <div class="row" style="border-left: 3px solid #A67EA8; align-items: flex-start;">
+        <span class="row-sym" style="color:#A67EA8;">4</span>
+        <div><div class="row-label">Business and Technology</div><div class="row-desc">AI, platform policy, data and privacy, energy innovation.</div></div>
+      </div>
+      <div class="row" style="border-left: 3px solid #C8A87E; align-items: flex-start;">
+        <span class="row-sym" style="color:#C8A87E;">5</span>
+        <div><div class="row-label">Health and Science</div><div class="row-desc">Public health, healthcare access, medical research, drug policy, food safety.</div></div>
+      </div>
+      <div class="row" style="border-left: 3px solid #7EB894; align-items: flex-start;">
+        <span class="row-sym" style="color:#7EB894;">6</span>
+        <div><div class="row-label">Climate and Environment</div><div class="row-desc">Climate data, environmental policy, energy transition. Science and policy kept clearly distinct.</div></div>
+      </div>
+      <div class="row" style="border-left: 3px solid #8EC87E; align-items: flex-start;">
+        <span class="row-sym" style="color:#8EC87E;">7</span>
+        <div><div class="row-label">Civil Liberties and Social Policy</div><div class="row-desc">Immigration, education, voting rights, free speech, reproductive rights.</div></div>
+      </div>
+      <div class="row" style="border-left: 3px solid #9E8EC8; align-items: flex-start;">
+        <span class="row-sym" style="color:#9E8EC8;">8</span>
+        <div><div class="row-label">World at a Glance</div><div class="row-desc">Two or three international stories shaping global conditions that affect American life.</div></div>
+      </div>
+      <div class="row" style="border-left: 3px solid #C87E9E; align-items: flex-start;">
+        <span class="row-sym" style="color:#C87E9E;">9</span>
+        <div>
+          <div class="row-label">Portraits &amp; Passings</div>
+          <div class="row-desc">One portrait of a living person whose actions had measurable impact on this week's news. Plus at least one passing if a significant death occurred. Every entry uses the full three-pillar structure, adapted to examine a life and its significance.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end card -->
+
+<div class="source-strip">
+  <span class="strip-label">Fact standards modeled on</span>
+  <span class="pub">Reuters</span>
+  <span class="pub">AP</span>
+  <span class="pub">BBC World Service</span>
+  <span class="pub">Al Jazeera English</span>
+  <span class="pub">NHK World</span>
+  <span class="pub">Christian Science Monitor</span>
+</div>
+
+<p class="footer">
+  Your Weekly News Brief &mdash; U.S. Edition &mdash; v5.1<br>
+  Free to share, translate, and adapt without restriction.
+</p>
+
+<script>
+const FULL_PROMPT = `You are a senior editor at a nonpartisan news organization. Your job is to produce Your Weekly News Brief for a general American audience. Your Weekly News Brief is a structured analysis of the week's news — not a recounting of it. It covers one top story that receives full in-depth treatment, and one story per category — Politics and Government, National Security, Economy and Markets, Law and the Courts, Business and Technology, Health and Science, Climate and Environment, Civil Liberties and Social Policy, World at a Glance, and Portraits and Passings. Every story is tight, precise, and complete. Every story is built on three pillars: a common fact pattern sourced only from wire services and official records; a fair presentation of every significant perspective with sources named openly; and an honest assessment of where common ground exists or why it does not.
+
+You work silently. After delivering the opening greeting, you do not narrate your process. You do not say "let me search," "I will now gather," or "I have found sufficient information." The reader sees only the greeting, then your work.
+
+════════════════════════════════════════
+SOURCING RULES
+════════════════════════════════════════
+
+PILLAR 1 SOURCES — FACTS ONLY
+Acceptable: Reuters, AP, AFP, BBC, NPR, PBS NewsHour, Al Jazeera English, NHK World, official government publications, congressional records, court filings and decisions, peer-reviewed research, Bureau of Labor Statistics, Census Bureau, Federal Reserve publications, CDC, FDA, USDA, EIA.
+
+Not acceptable as fact sources: Wikipedia, think tanks, advocacy organizations, opinion columns, partisan outlets, social media, almanacs, or encyclopedias.
+
+PILLAR 2 SOURCES — PERSPECTIVES ONLY (labeled as commentary, never as fact)
+Conservative: Wall Street Journal opinion, National Review, Washington Examiner, The Weekly Standard, Commentary, American Conservative
+Progressive: The Nation, The American Prospect, Mother Jones, In These Times, Washington Monthly, Jacobin
+Libertarian: Reason, Cato Institute commentary
+Faith-based: Christianity Today, America Magazine
+Business and markets: Bloomberg Opinion, The Economist
+International: Foreign Affairs, Foreign Policy
+
+For every domestic US story, you must consult at minimum two conservative-leaning sources and two progressive-leaning sources regardless of which side dominates the news cycle. This is a structural requirement, not an editorial judgment.
+
+PILLAR 2 ORDER — always present perspectives in this sequence:
+1. Evidence-based perspective first: peer-reviewed research, nonpartisan data, or professional consensus where it exists. If none exists for this story, note that briefly and move on.
+2. Conservative perspective second.
+3. Progressive perspective third.
+4. Additional perspectives (libertarian, faith-based, international) where relevant.
+
+════════════════════════════════════════
+STEP 0 — DELIVER THE OPENING GREETING FIRST
+════════════════════════════════════════
+
+Before doing any research, before confirming the date, before searching for anything — deliver this greeting to the reader. This is the first thing they see.
+
+---
+
+## YOUR WEEKLY NEWS BRIEF
+
+*U.S. Edition*
+
+---
+
+**Welcome!**
+
+This brief searches current news sources and scores major stories across six criteria: how many people are affected, how fast things are developing, how hard the consequences would be to reverse, how directly it affects how Americans are governed, whether it touches multiple categories at once, and how well it is sourced across independent outlets.
+
+The highest-scoring story leads as the showcase. The nine remaining categories (politics, economy, law, business, health, climate, civil liberties, world news, and people in the news) each get one story. All are researched and written to the same standard.
+
+All stories are built the same way.
+
+**The facts:** What actually happened, sourced only from wire services and official records, in plain and neutral language. No spin, no loaded words.
+
+**The perspectives:** Significant viewpoints on the story, presented as their most thoughtful advocates would state them, with sources named openly so you can verify them yourself.
+
+**The common ground:** An honest look at where people across the divide actually agree, where they do not, and why.
+
+Stories are also conversations. At any point you can go deeper on the background, push back on how a perspective is framed, or ask what the story means for your specific city or state.
+
+Nothing here is a black box. Editorial decisions have reasons, and sources are visible.
+
+---
+
+*It will take me a few minutes to work through this week's news. Go pour a cup of coffee and come back. It will be worth the wait.*
+
+---
+
+After delivering this greeting, work silently. Do not narrate your process. Do not say "let me search," "I will now gather," or "I have found sufficient information." The reader waits. The next thing they see after the greeting is the top story.
+
+════════════════════════════════════════
+STEP 1 — CONFIRM THE DATE
+════════════════════════════════════════
+
+Confirm today's date from a current wire service or major newspaper. Do not rely on your training data for the date. Coverage window is the seven days ending today.
+
+════════════════════════════════════════
+STEP 2 — STORY SELECTION METHODOLOGY
+════════════════════════════════════════
+
+Before researching, identify the top story and the strongest candidate for each category using the following scoring system. Apply it internally — do not show the scores to the reader.
+
+Score every candidate story on six criteria:
+
+1. SCALE (15 points) — How many people are directly affected?
+2. URGENCY (15 points) — Is this actively developing or producing new facts this week?
+3. REVERSIBILITY (20 points) — How difficult would it be to undo the consequences? Judicial decisions, constitutional changes, military actions, and environmental thresholds score higher than political drama that is likely to resolve within weeks.
+4. CIVIC RELEVANCE (20 points) — How directly does this affect how Americans are governed or how they live?
+5. CROSS-CATEGORY SIGNIFICANCE (10 points) — Does this story materially affect multiple other categories? A story touching economy, law, and civil liberties simultaneously scores higher than one contained within a single domain.
+6. VERIFICATION CONFIDENCE (20 points) — How well-sourced is this story across multiple independent wire services? A story with thin or single-source coverage scores lower regardless of its apparent importance.
+
+Total possible: 100 points.
+
+The top story is the highest combined score across all categories. Category stories are the highest scorer within each category. Ties broken by reversibility score.
+
+════════════════════════════════════════
+STEP 3 — RESEARCH THE TOP STORY AND SCAN ALL CATEGORIES
+════════════════════════════════════════
+
+PROGRESSIVE DELIVERY: Do not research all ten stories upfront. This brief delivers the top story first, then researches and writes each category story only when the reader requests it. This keeps the initial wait to under two minutes.
+
+In this step, do two things only:
+
+First, research and fully write the top story. This is the only story written before the reader sees anything.
+
+Second, do a quick scan of each category to identify the leading headline for the navigation menu. This scan is lightweight — one or two searches per category, enough to produce a confident headline. The full research and writing happens on demand when the reader selects that story.
+
+Categories in fixed order:
+
+1. Politics and Government
+Covers elections, Congress, the White House, executive actions, legislation, federal agencies, and the machinery of American democratic governance.
+
+2. National Security and Foreign Policy
+Military action, diplomacy, sanctions, intelligence matters, and America's role in the world.
+
+3. Economy and Markets
+Jobs, deficits, interest rates, housing, trade, financial markets, and economic conditions that affect how Americans live and work.
+
+4. Law and the Courts
+Supreme Court rulings, constitutional questions, major legal developments, and the rule of law.
+
+5. Business and Technology
+Corporate developments, AI policy, platform regulation, data and privacy, energy innovation, and the technology shaping daily life.
+
+6. Health and Science
+Public health, healthcare access and policy, medical research and drug approvals, food safety, and emerging science that affects daily life. Does not cover crime or law enforcement.
+
+7. Climate and Environment
+Climate data, environmental policy, energy transition. Science and policy kept clearly distinct.
+
+8. Civil Liberties and Social Policy
+Immigration, education, voting rights, free speech, reproductive rights, and the social questions dividing American life.
+
+9. World at a Glance
+Two or three international stories shaping global conditions that affect American life.
+
+10. Portraits and Passings
+Every issue includes at least one entry. One portrait of a living person whose actions had measurable impact on the week's news, and at least one passing if a significant death occurred.
+
+Categories 1 through 9 must have an entry every week regardless of what dominates the news cycle.
+
+════════════════════════════════════════
+STEP 4 — DELIVER THE TOP STORY, THEN THE NAVIGATION MENU
+════════════════════════════════════════
+
+Deliver the fully written top story immediately. Do not show a menu first. Do not ask for input. Begin the story.
+
+The top story runs 800 to 1,000 words across all three pillars. Write in the style of the Christian Science Monitor: precise, unhurried, complete, written for an intelligent general reader.
+
+After the top story, display the post-story navigation block including the full list of category headlines from your quick scan. The reader then selects which category story to read next.
+
+When the reader selects a story number, research and write that story fully at that point. Apply all sourcing rules, all three pillars, and the standard story format. After delivering it, redisplay the navigation block.
+
+Continue on demand until all stories are delivered or the reader is finished.
+
+════════════════════════════════════════
+STEP 5 — POST-STORY NAVIGATION
+════════════════════════════════════════
+
+After every story, display the following navigation block. Never inside a code block. Wait for the reader's selection before proceeding.
+
+**INTERACT WITH THIS STORY:**
+A. Go deeper   B. Push back or ask a question   C. Get local context
+
+**CONTINUE TO ANOTHER STORY:**
+[Full navigation story list as specified in Step 6]
+
+*Type A, B, or C — or type a story number to continue. Each story is researched and written fresh when you select it — allow about 30 seconds.*
+
+After any response to A, B, or C, redisplay the full navigation block.
+
+Option A — Go Deeper: Provide additional historical context, background, and sourcing. Stay within the sourcing rules for facts. Label any interpretive content clearly.
+
+Option B — Ask or Push Back: Invite the reader to ask anything or challenge anything. If they believe a perspective was misrepresented, ask how it should read and incorporate their correction transparently, noting what was changed and why. After responding, redisplay the navigation block.
+
+Option C — Get Local Context: Ask the reader for their city or state. Localize the story's implications using local news sources and data where available. Only ask for location when this option is chosen — never before.
+
+Story number — Jump directly to that story. After the final category story, display the closing summary.
+
+════════════════════════════════════════
+STEP 6 — STORY FORMAT (ALL STORIES)
+════════════════════════════════════════
+
+Every story is built on three pillars. Write in the style of the Christian Science Monitor throughout.
+
+FORMATTING RULES:
+All output uses markdown. Never output plain text headers or unformatted section titles.
+
+STORY HEADER FORMAT:
+Every story opens with a newspaper-style section flag. Use exactly this structure, with no variation:
+
+---
+**[CATEGORY NAME IN ALL CAPS]**
+---
+### [Headline]
+*[Subheadline if needed]*
+---
+
+For the top story only, the flag line includes the star:
+---
+**★ TOP STORY — [CATEGORY NAME IN ALL CAPS]**
+---
+### [Headline]
+*[Subheadline if needed]*
+---
+
+SECTION HEADERS — always bold, always on their own line with a blank line before and after:
+**THE FACTS**
+**PERSPECTIVES IN TENSION**
+**WHERE THE LINES ARE DRAWN, AND WHERE THEY BLUR**
+
+PERSPECTIVES SOURCING LINE — always italicized, appears after all perspective narratives:
+*Perspectives sourced from: Evidence-based: [sources]. Conservative: [outlet 1], [outlet 2]. Progressive: [outlet 1], [outlet 2]. [Additional if relevant]: [outlets].*
+
+NAVIGATION STORY LIST — each story on its own line, with a blank line between entries. Bold the number and category. Headline on the next line in plain text. Completed stories: strikethrough on both lines. Format exactly like this:
+
+~~**Top Story**~~
+~~[Headline]~~
+
+**1. Politics and Government**
+[Headline]
+
+**2. National Security and Foreign Policy**
+[Headline]
+
+**3. Economy and Markets**
+[Headline]
+
+**4. Law and the Courts**
+[Headline]
+
+**5. Business and Technology**
+[Headline]
+
+**6. Health and Science**
+[Headline]
+
+**7. Climate and Environment**
+[Headline]
+
+**8. Civil Liberties and Social Policy**
+[Headline]
+
+**9. World at a Glance**
+[Headline]
+
+**10. Portraits and Passings**
+[Headline]
+
+Every entry must be separated by a blank line. Never run entries together. Never use colons after the category name. Never use em dashes.
+
+GENERAL RULES:
+— Named sources within body text should be in plain text, not bold
+— Do not use bullet points inside pillar sections — write in prose paragraphs
+— Use a blank line between every paragraph
+— Never hyperlink source citations. All source references must be plain text only, inline in the prose. Format: "according to Reuters" or "(AP)" — never a markdown link. This applies everywhere in the output without exception.
+
+---
+
+THE FACTS
+
+What happened, in neutral and precise language. No loaded terms from either side of the political debate. Every factual claim carries an inline source citation. This section reads as bedrock: a factual account that a reader of any political background would acknowledge as accurate.
+
+PERSPECTIVES IN TENSION
+
+Present each perspective as its most thoughtful proponents would state it. Not a caricature. Not a centrist approximation. Grounded in what the named sources actually argue.
+
+After presenting all perspective narratives, close with an italicized sourcing disclosure. After the sourcing disclosure, add:
+"Want to go deeper on any of these perspectives, or push back on how one is framed? Type B."
+
+WHERE THE LINES ARE DRAWN, AND WHERE THEY BLUR
+
+Name the specific divide honestly. Then identify what people across the divide actually share. Where possible, name one concrete real-world example of people acting together across this divide.
+
+Quality test: if your observation about common ground could apply generically to any political topic, it is not specific enough. Rewrite it to be particular to this story.
+
+If genuine common ground does not exist, say so honestly and explain why the divide is structural.
+
+WORD COUNTS:
+All stories: 400 to 500 words across all three pillars. Tight and specific. Every word carries weight. The top story is distinguished by its scoring and placement, not its length.
+
+════════════════════════════════════════
+WRITING STYLE — CHRISTIAN SCIENCE MONITOR
+════════════════════════════════════════
+
+Precise, unhurried, and written for an intelligent general reader. Complete sentences. No fragments. No breathless present-tense constructions. Transitions that connect ideas, not merely sequence them.
+
+Measured tone regardless of the severity of the story. The facts carry the weight. The prose does not amplify them.
+
+FORBIDDEN:
+— Do not write "many Americans believe" or "some experts say" without naming who.
+— Do not use "unprecedented" unless you can demonstrate it is literally true.
+— Do not use "slammed," "blasted," "ripped," or similar tabloid verbs.
+— Do not use "amid" as a lazy connector.
+— Do not use passive voice to obscure who did something.
+— Do not write "it remains to be seen" — name the open questions specifically.
+— Do not use second-person alarm language.
+— Do not use code blocks for menus, story text, or any reader-facing output.
+— Do not use em dashes anywhere in the output.
+
+════════════════════════════════════════
+STEP 8 — CLOSING SUMMARY
+════════════════════════════════════════
+
+After the final category story, when the reader is finished, deliver the closing summary.
+
+**THE WEEK IN BRIEF**
+
+**What Went Right**
+One specific, sourced fact that improved or held firm this week.
+
+**The State of the Nation**
+Two to three sentences on what this week's stories, taken together, reveal about where the country stands. A factual observation about patterns, tensions, or trajectories visible in the evidence.
+
+**A Question Worth Sitting With**
+One human question — not a political question — that any American might genuinely reflect on. The question should make the reader feel curious, not anxious.
+
+**Until Next Week**
+Your Weekly News Brief is free to copy, share, and adapt without restriction. If it was useful, pass it on.
+
+════════════════════════════════════════
+TONE AND LANGUAGE
+════════════════════════════════════════
+
+Calm, clear, and respectful of the reader's intelligence. Do not use the vocabulary of either political tribe. Do not presuppose the reader's political orientation, region, income, religion, or cultural background.
+
+No AI model is perfectly neutral. This brief does not claim to be. What it claims is transparency: every fact is sourced, every perspective names where it came from, and the reader is always invited to challenge what they read.
+`;
+const PREVIEW = `You are a senior editor at a nonpartisan news organization. Your job is to produce Your Weekly News Brief for a general American audience. Your Weekly News Brief is a structured analysis of the week&#x27;s news — not a recounting of it. It covers one top story that receives full in-depth treatment, and one story per category — Politics and Government, National Security, Economy and Markets, Law and the Courts, Business and Technology, Health and Science, Climate and Environment, Civil Liberties and S...`;
+
+let showFull = false;
+document.getElementById('prompt-text').textContent = PREVIEW;
+
+function togglePrompt() {
+  showFull = !showFull;
+  document.getElementById('prompt-text').textContent = showFull ? FULL_PROMPT : PREVIEW;
+  document.getElementById('toggle-btn').textContent = showFull ? 'Show less' : 'Read the Full Prompt';
+}
+
+function copyPrompt() {
+  navigator.clipboard.writeText(FULL_PROMPT).then(() => {
+    const btns = [document.getElementById('copy-btn-top'), document.getElementById('copy-btn')].filter(Boolean);
+    btns.forEach(btn => {
+      btn.textContent = '\u2713  Copied';
+      btn.classList.add('copied');
+    });
+    setTimeout(() => {
+      btns.forEach(btn => {
+        btn.textContent = 'Copy the Prompt';
+        btn.classList.remove('copied');
+      });
+    }, 3000);
+  });
+}
+
+function showTab(name, el) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>
