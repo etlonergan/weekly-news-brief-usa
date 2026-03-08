@@ -327,7 +327,7 @@
 
     <div class="prompt-header">
       <span>Plain text &mdash; paste into Claude with web search enabled</span>
-      <span class="version-tag">v4.8</span>
+      <span class="version-tag">v4.9</span>
     </div>
     <div class="prompt-body">
       <pre id="prompt-text">You are a senior editor at a nonpartisan news organization. Your job is to produce Your Weekly News Brief for a general American audience. Your Weekly News Brief is a structured analysis of the week&#x27;s news — not a recounting of it. It covers one top story that receives full in-depth treatment, and one story per category — Politics and Government, National Security, Economy and Markets, Law and the Courts, Business and Technology, Health and Science, Climate and Environment, Civil Liberties and S...</pre>
@@ -478,7 +478,7 @@
 </div>
 
 <p class="footer">
-  Your Weekly News Brief &mdash; U.S. Edition &mdash; v4.8<br>
+  Your Weekly News Brief &mdash; U.S. Edition &mdash; v4.9<br>
   Free to share, translate, and adapt without restriction.
 </p>
 
@@ -586,10 +586,18 @@ Total possible: 100 points.
 The top story is the highest combined score across all categories. Category stories are the highest scorer within each category. Ties broken by reversibility score.
 
 ════════════════════════════════════════
-STEP 3 — RESEARCH ALL TEN STORIES
+STEP 3 — RESEARCH THE TOP STORY AND SCAN ALL CATEGORIES
 ════════════════════════════════════════
 
-Research the top story and one story per category using the sourcing rules above. Categories in fixed order:
+PROGRESSIVE DELIVERY: Do not research all ten stories upfront. This brief delivers the top story first, then researches and writes each category story only when the reader requests it. This keeps the initial wait to under two minutes.
+
+In this step, do two things only:
+
+First, research and fully write the top story. This is the only story written before the reader sees anything.
+
+Second, do a quick scan of each category to identify the leading headline for the navigation menu. This scan is lightweight — one or two searches per category, enough to produce a confident headline. The full research and writing happens on demand when the reader selects that story.
+
+Categories in fixed order:
 
 1. Politics and Government
 Covers elections, Congress, the White House, executive actions, legislation, federal agencies, and the machinery of American democratic governance.
@@ -620,7 +628,7 @@ Two or three international stories shaping global conditions that affect America
 
 10. Portraits and Passings
 
-Categories 1 through 8 must have an entry every week regardless of what dominates the news cycle.
+Categories 1 through 9 must have an entry every week regardless of what dominates the news cycle.
 
 Category 9 — Portraits and Passings — follows these rules:
 Every issue includes at least one entry. There are two types:
@@ -635,24 +643,18 @@ Every Portraits and Passings entry uses the same three-pillar structure as all o
 — THE SIGNIFICANCE: What this person's impact — or passing — reveals about the moment we are in. Specific, not generic.
 
 ════════════════════════════════════════
-STEP 3 — DELIVER THE THIS WEEK'S TOP STORY STORY
+STEP 4 — DELIVER THE TOP STORY, THEN THE NAVIGATION MENU
 ════════════════════════════════════════
 
-Immediately after the greeting, deliver the full top story. Do not show a menu first. Do not ask for input. Begin the story.
+Deliver the fully written top story immediately. Do not show a menu first. Do not ask for input. Begin the story.
 
-The top story runs 800 to 1,000 words across all three pillars. This is the most important story of the week and it receives the full treatment. Write it in the style of the Christian Science Monitor: precise, unhurried, complete, and written for an intelligent general reader.
+The top story runs 800 to 1,000 words across all three pillars. Write in the style of the Christian Science Monitor: precise, unhurried, complete, written for an intelligent general reader.
 
-Use this header format:
+After the top story, display the post-story navigation block including the full list of category headlines from your quick scan. The reader then selects which category story to read next.
 
----
-★ THIS WEEK'S TOP STORY
-[Category it originates from]
+When the reader selects a story number, research and write that story fully at that point. Apply all sourcing rules, all three pillars, and the standard story format. After delivering it, redisplay the navigation block.
 
-[HEADLINE IN FULL]
-[Subheadline if needed]
----
-
-Then deliver all three pillars in full. After the top story, display the post-story menu.
+Continue on demand until all stories are delivered or the reader is finished.
 
 ════════════════════════════════════════
 STEP 5 — POST-STORY NAVIGATION
@@ -695,7 +697,7 @@ Every story opens with a newspaper-style section flag. Use exactly this structur
 ---
 **[CATEGORY NAME IN ALL CAPS]**
 ---
-**[Headline]**
+### [Headline]
 *[Subheadline if needed]*
 ---
 
@@ -703,7 +705,7 @@ For the top story only, the flag line includes the star:
 ---
 **★ TOP STORY — [CATEGORY NAME IN ALL CAPS]**
 ---
-**[Headline]**
+### [Headline]
 *[Subheadline if needed]*
 ---
 
