@@ -926,12 +926,16 @@ function togglePrompt() {
 
 function copyPrompt() {
   navigator.clipboard.writeText(FULL_PROMPT).then(() => {
-    const btn = document.getElementById('copy-btn');
-    btn.textContent = '\u2713  Copied — Paste into Claude or any AI with web search';
-    btn.classList.add('copied');
+    const btns = [document.getElementById('copy-btn-top'), document.getElementById('copy-btn')].filter(Boolean);
+    btns.forEach(btn => {
+      btn.textContent = '\u2713  Copied';
+      btn.classList.add('copied');
+    });
     setTimeout(() => {
-      btn.textContent = 'Copy the Prompt';
-      btn.classList.remove('copied');
+      btns.forEach(btn => {
+        btn.textContent = 'Copy the Prompt';
+        btn.classList.remove('copied');
+      });
     }, 3000);
   });
 }
